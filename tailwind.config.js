@@ -7,9 +7,10 @@ export default {
   		fontFamily: {
   			sans: ['Lato', 'sans-serif'],
 			display: ['Playfair Display', 'serif'],
-			serif: ['Playfair Display', 'serif'],
+			serif: ['Playfair Display', 'Georgia', 'serif'],
   			script: ['Great Vibes', 'cursive'],
 			logo: ['Dancing Script', 'cursive'],
+			georgia: ['Georgia', 'serif'],
   			mono: ['JetBrains Mono', 'monospace']
   		},
   		colors: {
@@ -22,6 +23,10 @@ export default {
 			sky_blue: {
 				DEFAULT: '#87CEEB',
 				foreground: '#2c2c2c'
+			},
+			cream: {
+				DEFAULT: '#F8F8F5',
+				muted: '#F5F5F0'
 			},
 			off_white: '#F8F8F5',
   			muted: {
