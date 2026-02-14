@@ -11,7 +11,8 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="snap-section relative bg-[#1a1a1a] overflow-hidden"
+      style={{ position: 'relative' }}
+      className="snap-section bg-[#1a1a1a] overflow-hidden"
     >
       <motion.div
         style={{ y: backgroundY, opacity }}
@@ -32,7 +33,7 @@ export function HeroSection() {
           transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
           className="pl-[8%] max-w-4xl"
         >
-          <h1 className="font-display text-[clamp(48px,12vw,110px)] text-white font-light uppercase leading-[1] tracking-[0.15em] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+          <h1 className="font-display text-[clamp(44px,12vw,110px)] text-white font-light uppercase leading-[1] tracking-[0.15em] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
             HAPPY <br /> <span className="font-medium">BIRTHDAY!</span>
           </h1>
         </motion.div>
@@ -42,7 +43,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.5 }}
           className="absolute top-[8%] right-[8%] text-right"
         >
-          <span className="font-script text-[clamp(80px,15vw,180px)] text-white/95 italic leading-none block drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]">
+          <span className="font-script text-[clamp(70px,15vw,180px)] text-white/95 italic leading-none block drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]">
             18th
           </span>
         </motion.div>
@@ -52,7 +53,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="absolute bottom-[8%] left-[8%]"
         >
-          <p className="font-sans text-[clamp(14px,2.5vw,22px)] font-light text-white tracking-[0.3em] uppercase drop-shadow-md">
+          <p className="font-sans text-[clamp(12px,2.5vw,22px)] font-light text-white tracking-[0.3em] uppercase drop-shadow-md">
             December 21, 2025
           </p>
         </motion.div>

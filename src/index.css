@@ -29,13 +29,14 @@
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    position: relative; /* CRITICAL: Fixed Framer Motion non-static container warning */
   }
   .snap-section {
     height: 100dvh;
     width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    position: relative;
+    position: relative; /* CRITICAL: Fixed Framer Motion non-static container warning */
     overflow: hidden;
   }
   .snap-container::-webkit-scrollbar {
