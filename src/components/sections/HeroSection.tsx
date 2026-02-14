@@ -1,57 +1,61 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 export function HeroSection() {
-  const { scrollYProgress } = useScroll({
-    offset: ["start start", "end start"],
-  });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
   return (
-    <section
-      style={{ position: 'relative' }}
-      className="snap-section bg-[#1a1a1a] overflow-hidden"
-    >
-      <motion.div
-        style={{ y: backgroundY, opacity }}
+    <section className="snap-section relative bg-black flex items-center justify-center overflow-hidden">
+      {/* Background with Zoom-out */}
+      <motion.div 
+        initial={{ scale: 1.15, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
         className="absolute inset-0 z-0"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-          style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1511221159820-22123d9061c0?q=80&w=2070&auto=format&fit=crop")',
-          }}
+        <img 
+          src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1600"
+          className="w-full h-full object-cover"
+          alt="Bernadya Portrait"
         />
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-black/35" />
       </motion.div>
-      <div className="relative h-full w-full flex flex-col justify-center z-10">
+      {/* Typography Reveals */}
+      <div className="relative z-10 w-full h-full px-[var(--pad-x)] flex flex-col justify-between py-[var(--pad-y)]">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-          className="pl-[8%] max-w-4xl"
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="mt-[8%]"
         >
-          <h1 className="font-display text-[clamp(44px,12vw,110px)] text-white font-light uppercase leading-[1] tracking-[0.15em] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-            HAPPY <br /> <span className="font-medium">BIRTHDAY!</span>
+          <h1 className="font-display font-[300] text-[clamp(56px,10vw,90px)] text-white leading-[1.1] tracking-[0.15em] uppercase will-change-transform">
+            HAPPY<br />BIRTHDAY!
           </h1>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="absolute top-[8%] right-[8%] text-right"
+          initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 10, 
+            delay: 0.7, 
+            duration: 1.5 
+          }}
+          viewport={{ once: true }}
+          className="absolute top-[8%] right-[5%] md:right-[8%]"
         >
-          <span className="font-script text-[clamp(70px,15vw,180px)] text-white/95 italic leading-none block drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]">
-            18th
+          <span className="font-script text-[clamp(80px,12vw,130px)] text-white italic drop-shadow-2xl">
+            21st
           </span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="absolute bottom-[8%] left-[8%]"
+          whileInView={{ opacity: 0.8 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          viewport={{ once: true }}
+          className="mb-[8%] ml-[5%]"
         >
-          <p className="font-sans text-[clamp(12px,2.5vw,22px)] font-light text-white tracking-[0.3em] uppercase drop-shadow-md">
-            December 21, 2025
+          <p className="font-lato font-[300] text-[clamp(14px,1.5vw,18px)] text-white tracking-[0.3em] uppercase">
+            March 16, 2025
           </p>
         </motion.div>
       </div>

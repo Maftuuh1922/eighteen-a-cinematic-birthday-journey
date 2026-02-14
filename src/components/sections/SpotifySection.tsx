@@ -1,171 +1,106 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
-import { cn } from '@/lib/utils';
 export function SpotifySection() {
   return (
-    <section className="snap-section relative w-full h-[100dvh] bg-blueGray overflow-hidden select-none">
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
-        style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px)' }}
-      />
-      <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] h-full w-full relative z-10">
-        <div className="relative flex flex-col h-full w-full z-20 overflow-y-auto hide-scrollbar">
-          <div className="relative w-full shrink-0 h-[clamp(180px,25dvh,250px)] mb-[clamp(30px,5vh,60px)]">
-            <div className="absolute top-[clamp(50px,8vh,80px)] left-[clamp(32px,6vw,60px)] z-[1] flex items-baseline gap-[clamp(18px,3vw,30px)] pointer-events-none">
-              <motion.h2
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                className="font-display font-[300] text-[clamp(40px,6vw,58px)] text-white uppercase tracking-[0.1em] leading-none inline-block"
-              >
-                Spotify
-              </motion.h2>
-              <motion.span
-                initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
-                whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 60, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="font-script text-[clamp(150px,20vw,220px)] text-white inline-block relative top-[clamp(18px,3vw,30px)] leading-[0.75] italic"
-              >
-                #1
-              </motion.span>
-            </div>
-            <motion.div
-              initial={{ y: -100, x: "-50%", rotate: -10 }}
-              whileInView={{ y: 0, x: "-50%", rotate: -2.5 }}
-              transition={{ type: "spring", damping: 12, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="absolute top-[clamp(50px,8vh,80px)] left-1/2 -translate-x-1/2
-                bg-[#8B1538]/95 px-[clamp(32px,5vw,45px)] py-[clamp(14px,2vh,18px)]
-                shadow-[0_15px_30px_rgba(0,0,0,0.15)] z-[5] whitespace-nowrap transform-gpu"
-            >
-              <span className="font-display font-[400] text-[clamp(20px,3vw,32px)] text-white uppercase tracking-[0.02em]">
-                12.7M Monthly Listeners!!
-              </span>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="absolute top-[clamp(40px,7vh,70px)] right-[clamp(80px,15vw,180px)] text-white z-[4] pointer-events-none"
-            >
-              <Star className="w-[clamp(40px,6vw,60px)] h-[clamp(40px,6vw,60px)]" fill="white" strokeWidth={0} />
-            </motion.div>
-          </div>
-          <div className="px-[clamp(32px,8vw,80px)] pb-[clamp(40px,6vh,60px)] lg:px-[clamp(60px,5vw,80px)]">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
-              viewport={{ once: true }}
-              className="relative bg-white/95 p-[clamp(28px,4vw,45px)]
-                max-w-[520px] w-full shadow-[0_12px_40px_rgba(0,0,0,0.1)]
-                rounded-none overflow-visible border-l-[8px] border-burgundy z-30 transform-gpu"
-            >
-              <h3 className="font-display text-[clamp(20px,3vw,26px)] font-[700] text-[#1a1a1a]
-                leading-[1.35] mb-[clamp(16px,2vh,22px)] uppercase tracking-[0.02em]">
-                PENYANYI PEREMPUAN PALING DIDENGARKAN... INSANE!
-              </h3>
-              <p className="font-georgia text-[clamp(14px,1.5vw,16px)] font-[400] text-[#3a3a3a]
-                leading-[1.75] tracking-[0.01em] italic">
-                "Pencapaian ini bukan sekadar angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Bernadya pecahin rekor gila ini... INSANE!"
-              </p>
-            </motion.div>
-          </div>
-        </div>
-        <div className="relative flex items-center justify-center h-full w-full
-          px-[clamp(32px,8vw,80px)] py-[clamp(40px,6vh,60px)] z-10
-          bg-white/10 lg:bg-transparent min-h-[50dvh] lg:min-h-full">
+    <section className="snap-section bg-blueGray relative overflow-hidden flex items-center justify-center">
+      {/* Background Stripes */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none" 
+           style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px)' }} />
+      <div className="container mx-auto px-[var(--pad-x)] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+        <div className="flex flex-col gap-8">
           <motion.div
-            initial={{ scale: 0, rotate: 45 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 100, delay: 1.5 }}
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
             viewport={{ once: true }}
-            className="absolute top-[clamp(20px,5vw,40px)] right-[clamp(20px,5vw,40px)]
-              bg-white w-[clamp(70px,10vw,90px)] h-[clamp(70px,10vw,90px)]
-              rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.1)] z-20 pointer-events-none"
+            className="flex items-end gap-2"
           >
-            <span className="font-lato font-[700] text-[clamp(13px,1.5vw,16px)] text-[#2a2a2a] tracking-[0.05em]">
-              1 OF 3
-            </span>
+            <span className="font-display text-[clamp(48px,6vw,72px)] text-white font-[200]">Spotify</span>
+            <motion.span 
+              initial={{ rotate: -30, scale: 0.5 }}
+              whileInView={{ rotate: 0, scale: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="font-script text-[clamp(120px,15vw,180px)] text-white leading-[0.5]"
+            >
+              #1
+            </motion.span>
           </motion.div>
-          <div className="relative w-full max-w-[500px] h-[60dvh] mx-auto flex items-center justify-center">
-            <PolaroidItem
-              src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600"
-              caption="on stage"
-              rotation={-6}
-              zIndex={3}
-              delay={1.7}
-              className="top-[5%] left-[5%]"
-            />
-            <PolaroidItem
-              src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600"
-              caption="the craft"
-              rotation={4}
-              zIndex={2}
-              delay={1.9}
-              className="top-[25%] right-[8%]"
-            />
-            <PolaroidItem
-              src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=600"
-              caption="studio time"
-              rotation={-3}
-              zIndex={1}
-              delay={2.1}
-              className="bottom-[10%] left-[15%]"
-            />
-          </div>
+          <motion.div
+            initial={{ y: 50, opacity: 0, rotate: -10 }}
+            whileInView={{ y: 0, opacity: 1, rotate: -2.5 }}
+            transition={{ type: "spring", damping: 10, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-burgundy px-10 py-4 shadow-xl self-start"
+          >
+            <p className="font-display text-[clamp(20px,3vw,30px)] text-white font-medium">12.7M Monthly Listeners!!</p>
+          </motion.div>
+          <motion.div 
+            initial={{ scale: 0, rotate: 0 }}
+            whileInView={{ scale: 1, rotate: 180 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="text-white opacity-40"
+          >
+            <Star size={48} fill="currentColor" />
+          </motion.div>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            viewport={{ once: true }}
+            className="bg-white/95 p-8 md:p-12 max-w-[480px] shadow-2xl rounded-sm"
+          >
+            <h3 className="font-display text-[clamp(24px,2.5vw,28px)] font-bold text-[#1a1a1a] mb-6">
+              PENYANYI PEREMPUAN PALING DIDENGARKAN... INSANE!
+            </h3>
+            <p className="font-georgia text-[15px] text-[#3a3a3a] leading-[1.7] italic">
+              "Pencapaian ini bukan hanya angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Teruslah berkarya, Nad."
+            </p>
+          </motion.div>
+        </div>
+        <div className="relative flex justify-center items-center h-[500px]">
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0, rotate: 45 }}
+            whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="absolute top-0 right-0 bg-white rounded-full p-4 shadow-xl z-20"
+          >
+            <span className="font-lato font-bold text-[14px] text-blueGray tracking-widest px-4">1 OF 3</span>
+          </motion.div>
+          {[
+            { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500", rot: -6, delay: 0.7, caption: "performance" },
+            { src: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500", rot: 4, delay: 0.9, caption: "guitar" },
+            { src: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=500", rot: -3, delay: 1.1, caption: "studio" }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: -100, opacity: 0, rotate: item.rot + (i % 2 === 0 ? 20 : -20) }}
+              whileInView={{ y: 0, opacity: 1, rotate: item.rot }}
+              whileHover={{ y: -10, rotate: 0, scale: 1.05, zIndex: 30 }}
+              transition={{ 
+                y: { type: "spring", stiffness: 50, delay: item.delay },
+                rotate: { duration: 1, delay: item.delay },
+                scale: { duration: 0.3 }
+              }}
+              viewport={{ once: true }}
+              className="absolute bg-white p-4 pb-12 shadow-2xl border border-white/40 cursor-pointer will-change-transform"
+              style={{ 
+                left: `${15 + i * 15}%`, 
+                top: `${10 + i * 10}%`,
+                width: 'clamp(220px, 30vw, 280px)'
+              }}
+            >
+              <div className="aspect-[1/1] overflow-hidden bg-gray-100">
+                <img src={item.src} className="w-full h-full object-cover grayscale" alt="Polaroid" />
+              </div>
+              <p className="mt-4 font-dancing text-[20px] text-center text-gray-700">{item.caption}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-interface PolaroidItemProps {
-  src: string;
-  caption: string;
-  rotation: number;
-  zIndex: number;
-  delay: number;
-  className?: string;
-}
-function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: PolaroidItemProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 100, rotate: rotation + 10 }}
-      whileInView={{ opacity: 1, y: 0, rotate: rotation }}
-      whileHover={{
-        y: -15,
-        rotate: 0,
-        scale: 1.05,
-        zIndex: 50,
-        boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.25)"
-      }}
-      transition={{
-        y: { type: "spring", stiffness: 40, damping: 15, delay },
-        rotate: { duration: 1, delay },
-        scale: { duration: 0.2 }
-      }}
-      viewport={{ once: true }}
-      className={cn(
-        "absolute bg-white p-[clamp(10px,2vw,15px)] pb-[clamp(35px,5vh,50px)] shadow-[0_8px_25px_rgba(0,0,0,0.2)] border border-white/40 cursor-pointer w-[clamp(180px,35vw,260px)] transform-gpu will-change-transform",
-        className
-      )}
-      style={{ zIndex }}
-    >
-      <div className="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 pointer-events-none">
-        <img
-          src={src}
-          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
-          alt={caption}
-          loading="lazy"
-        />
-      </div>
-      <p className="font-dancing text-[14px] text-[#666] text-center mt-2 lowercase pointer-events-none">
-        {caption}
-      </p>
-    </motion.div>
   );
 }

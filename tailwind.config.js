@@ -9,11 +9,18 @@ export default {
 			display: ['Playfair Display', 'serif'],
 			body: ['Lora', 'serif'],
 			georgia: ['Georgia', 'serif'],
+			dancing: ['"Dancing Script"', 'cursive'],
+			script: ['"Great Vibes"', 'cursive'],
+			lato: ['Lato', 'sans-serif'],
   			mono: ['JetBrains Mono', 'monospace']
   		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+			burgundy: '#8B1538',
+			darkBurgundy: '#6B1028',
+			skyBlue: '#87CEEB',
+			blueGray: '#7B8FA3',
 			priPurple: '#2D1B2E',
 			medPurple: '#3D2A3E',
 			ltPurple: '#5D3E5F',

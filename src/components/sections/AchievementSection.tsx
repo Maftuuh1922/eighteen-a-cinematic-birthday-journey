@@ -1,92 +1,109 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 export function AchievementSection() {
-  const heading = "Selamat Ulang Tahun Bernadya Ribka Jayakusuma!";
+  const heading = "SELAMAT ULANG TAHUN BERNADYA RIBKA JAYAKUSUMA!";
   return (
-    <section className="snap-section flex flex-col md:flex-row overflow-hidden h-[100dvh] bg-white">
-      {/* Left 60%: Playful sky blue with clouds */}
-      <div
-        className="relative w-full md:w-[60%] h-[50dvh] md:h-full overflow-hidden shrink-0"
+    <section className="snap-section flex flex-col md:flex-row overflow-hidden bg-white">
+      {/* Left 60%: Playful sky blue */}
+      <motion.div 
+        initial={{ x: "-100%" }}
+        whileInView={{ x: 0 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        className="w-full md:w-[60%] h-full relative p-8 md:p-12 flex flex-col justify-between bg-skyBlue"
       >
-        {/* Background Image: Clear blue sky clouds */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1600")' }}
-        />
-        {/* Logo: Positioned Absolute Top-8 Left-12 */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="absolute top-8 left-8 md:top-12 md:left-12 z-20 flex items-baseline gap-4"
+          className="flex items-baseline gap-4"
         >
-          <span className="font-dancing text-[clamp(60px,8vw,80px)] font-[400] text-white drop-shadow-[2px_2px_8px_rgba(0,0,0,0.2)] leading-none">
-            Bernadya
-          </span>
-          <span className="font-display text-[clamp(24px,4vw,40px)] font-[400] text-[#8B1538] uppercase tracking-[0.05em] leading-none">
-            MUSIC
-          </span>
+          <span className="font-dancing text-[clamp(60px,8vw,80px)] text-white">Bernadya</span>
+          <span className="font-display text-[clamp(30px,4vw,40px)] text-burgundy/40 uppercase tracking-widest font-bold">Music</span>
         </motion.div>
-        {/* Narrative Card: Positioned Absolute Bottom-20 Left-12 */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 0.96, y: 0 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.6 }}
           viewport={{ once: true }}
-          className="absolute bottom-12 left-8 md:bottom-20 md:left-12 z-20 bg-white p-[clamp(32px,4vw,52px)] md:px-[clamp(42px,5vw,55px)] max-w-[560px] w-[calc(100%-64px)] shadow-[0_12px_40px_rgba(0,0,0,0.1)] rounded-none"
+          className="bg-white/95 p-10 md:p-12 max-w-[550px] shadow-[0_10px_35px_rgba(0,0,0,0.08)] rounded-none self-start"
         >
-          <h2 className="font-display text-[clamp(24px,3vw,28px)] font-bold text-[#1a1a1a] leading-[1.35] mb-[clamp(18px,2vh,24px)] capitalize tracking-[0.01em]">
-            {heading}
+          <h2 className="font-display text-[clamp(23px,3vw,27px)] font-bold text-[#1a1a1a] leading-[1.35] mb-6 uppercase tracking-tight">
+            {heading.split("").map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.05, delay: 0.9 + i * 0.03 }}
+                viewport={{ once: true }}
+              >
+                {char}
+              </motion.span>
+            ))}
           </h2>
-          <div className="space-y-4 font-georgia text-[clamp(15px,1.6vw,17px)] text-[#3a3a3a] leading-[1.8]">
-            <p>
-              Selamat ulang tahun untuk sosok yang menyembuhkan dengan luka yang ia tuangkan dalam nada.
-            </p>
-            <p>
-              Terima kasih telah menjadi suara bagi hati yang senyap, dan tetap bersinar di antara ribuan bintang lainnya.
-            </p>
-          </div>
+          <motion.div 
+            className="font-georgia text-[clamp(15px,1.2vw,17px)] text-[#3a3a3a] leading-[1.75] tracking-wide"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.1, delayChildren: 1.2 } }
+            }}
+          >
+            {["SELAMAT ULANG TAHUN UNTUK SOSOK YANG MENYEMBUHKAN", "DENGAN LUKA YANG IA TUANGKAN DALAM NADA.", "TERIMA KASIH TELAH MENJADI SUARA BAGI HATI YANG SENYAP,", "DAN TETAP BERSINAR DI ANTARA RIBUAN BINTANG LAINNYA."].map((line, i) => (
+              <motion.p 
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="mb-2"
+              >
+                {line}
+              </motion.p>
+            ))}
+          </motion.div>
         </motion.div>
-      </div>
-      {/* Right 40%: Burgundy Premium Split */}
-      <div
-        className="relative w-full md:w-[40%] h-[50dvh] md:h-full shrink-0 bg-gradient-to-b from-[#8B1538] to-[#6B1028] overflow-hidden"
+      </motion.div>
+      {/* Right 40%: Burgundy corporate */}
+      <motion.div 
+        initial={{ x: "100%" }}
+        whileInView={{ x: 0 }}
+        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        className="w-full md:w-[40%] h-full relative bg-gradient-to-b from-burgundy to-darkBurgundy"
       >
-        {/* Juni Records Badge */}
-        <motion.div
+        <motion.div 
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", damping: 15, delay: 0.8 }}
+          transition={{ type: "spring", damping: 12, delay: 0.5 }}
           viewport={{ once: true }}
-          className="absolute top-8 right-8 bg-[#C41E3A] py-[22px] px-[26px] flex flex-col items-center justify-center gap-1 z-30"
+          className="absolute top-8 right-8 bg-[#C41E3A] p-6 text-white text-right"
         >
-          <div className="font-sans font-[700] text-[16px] tracking-[0.1em] text-white">JUNI</div>
-          <div className="font-sans font-[700] text-[14px] tracking-[0.15em] text-white opacity-90">RECORDS</div>
+          <div className="font-bold text-[18px] tracking-widest uppercase">JUNI</div>
+          <div className="font-bold text-[14px] tracking-[0.3em] uppercase opacity-80">RECORDS</div>
         </motion.div>
-        {/* Portrait Frame: Centered Arch */}
-        <div className="absolute inset-0 flex items-center justify-center p-8">
+        <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            initial={{ scale: 0.85, opacity: 0, y: 20 }}
-            whileInView={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1 }}
+            initial={{ scale: 0.8, rotate: -5, opacity: 0 }}
+            whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.8 }}
             viewport={{ once: true }}
-            className="relative w-[clamp(310px,85%,390px)] h-[clamp(390px,85%,490px)] border-[18px] border-[#8B1538] shadow-[0_15px_50px_rgba(0,0,0,0.3)] bg-[#f5f5f5] overflow-hidden transform-gpu"
-            style={{ borderRadius: '50% 50% 0 0' }}
+            className="relative w-[clamp(300px,80%,380px)] aspect-square bg-[#2a2a2a] overflow-hidden rounded-[50%_50%_0_0] shadow-[0_15px_45px_rgba(0,0,0,0.3)] border-[12px] border-burgundy/20"
           >
-            <motion.img
-              initial={{ scale: 1.1 }}
+            <motion.img 
+              initial={{ scale: 1.2 }}
               whileInView={{ scale: 1 }}
-              transition={{ duration: 2, delay: 1.2 }}
+              transition={{ duration: 1.5, delay: 1 }}
               viewport={{ once: true }}
-              src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1200"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-              style={{ filter: 'brightness(1.05) contrast(1.02)' }}
-              alt="Bernadya Portrait"
+              src="https://images.unsplash.com/photo-1514525253361-bee8718a340b?auto=format&fit=crop&q=80&w=800"
+              className="w-full h-full object-cover grayscale"
+              alt="Portrait"
             />
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
