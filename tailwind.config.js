@@ -5,35 +5,22 @@ export default {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['Lato', 'sans-serif'],
+  			sans: ['Inter', 'sans-serif'],
 			display: ['Playfair Display', 'serif'],
-			serif: ['Playfair Display', 'Georgia', 'serif'],
-  			script: ['Great Vibes', 'cursive'],
-			logo: ['Dancing Script', 'cursive'],
+			body: ['Lora', 'serif'],
 			georgia: ['Georgia', 'serif'],
-			lora: ['Lora', 'serif'],
   			mono: ['JetBrains Mono', 'monospace']
   		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
-			burgundy: {
-				DEFAULT: '#8B1538',
-				foreground: '#FFFFFF'
-			},
-			sky_blue: {
-				DEFAULT: '#87CEEB',
-				foreground: '#2c2c2c'
-			},
-			cream: {
-				DEFAULT: '#F8F8F5',
-				muted: '#F5F5F0'
-			},
-			off_white: '#F8F8F5',
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
+			priPurple: '#2D1B2E',
+			medPurple: '#3D2A3E',
+			ltPurple: '#5D3E5F',
+			cream: '#F5E6D3',
+			wCream: '#E8C4A8',
+			brown: '#8B6F5F',
+			offWhite: '#F9F6F1',
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -42,15 +29,9 @@ export default {
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))'
   		},
-  		keyframes: {
-  			'fade-in': {
-  				'0%': { opacity: '0', transform: 'translateY(20px)' },
-  				'100%': { opacity: '1', transform: 'translateY(0)' }
-  			}
-  		},
-  		animation: {
-  			'fade-in': 'fade-in 1s ease-out forwards'
-  		}
+		transitionProperty: {
+			'transform-shadow': 'transform, box-shadow'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")]

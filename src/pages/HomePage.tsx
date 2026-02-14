@@ -1,39 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { TrisaktiSection } from '@/components/sections/TrisaktiSection';
-import { RankSection } from '@/components/sections/RankSection';
-import { FirstOnMindSection } from '@/components/sections/FirstOnMindSection';
-import { FinalWishesSection } from '@/components/sections/FinalWishesSection';
+import { ArtistHero } from '@/components/sections/ArtistHero';
+import { ArtistAbout } from '@/components/sections/ArtistAbout';
+import { ArtistDiscography } from '@/components/sections/ArtistDiscography';
+import { ArtistAchievements } from '@/components/sections/ArtistAchievements';
+import { ArtistConnect } from '@/components/sections/ArtistConnect';
 export function HomePage() {
   return (
-    <main className="snap-container bg-black selection:bg-burgundy selection:text-white">
+    <main className="snap-container bg-priPurple selection:bg-ltPurple selection:text-cream">
       {/* Cinematic Linear Journey */}
       <div className="relative z-10">
-        <HeroSection />
-        <TrisaktiSection />
-        <RankSection />
-        <FirstOnMindSection />
-        <FinalWishesSection />
+        <ArtistHero />
+        <ArtistAbout />
+        <ArtistDiscography />
+        <ArtistAchievements />
+        <ArtistConnect />
       </div>
-      {/* Persistent Brand Overlay */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.35 }}
-        transition={{ duration: 2, delay: 1 }}
-        className="fixed top-10 left-10 z-50 pointer-events-none select-none mix-blend-difference hidden md:block"
-      >
-        <span className="font-display italic text-2xl text-white tracking-[0.25em] font-light">
-          EIGHTEEN
-        </span>
-      </motion.div>
-      {/* Mobile Indicator */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none md:hidden">
-        <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-1 h-8 bg-white/20 rounded-full"
-        />
+      {/* Subtle Side Navigation - Vertical Line */}
+      <div className="fixed right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 pointer-events-none hidden md:flex">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <div key={i} className="w-[1px] h-8 bg-cream/20" />
+        ))}
       </div>
     </main>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Music, Youtube, Instagram } from 'lucide-react';
+import { Music, Youtube, Instagram, Twitter } from 'lucide-react';
 export function ArtistConnect() {
   return (
-    <section className="snap-section bg-gradient-to-b from-medPurple to-priPurple px-[var(--pad-x)] py-[var(--pad-y)] flex flex-col items-center justify-center text-cream overflow-y-auto hide-scrollbar">
-      <div className="z-10 text-center w-full max-w-4xl py-12">
+    <section className="snap-section bg-gradient-to-b from-medPurple to-priPurple px-[var(--pad-x)] py-[var(--pad-y)] flex flex-col items-center justify-center text-cream">
+      <div className="z-10 text-center w-full max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -17,10 +17,10 @@ export function ArtistConnect() {
         </motion.div>
         <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-20">
           {[
-            { icon: <Music className="size-8" />, label: "Spotify", link: "#" },
-            { icon: <Music className="size-8" />, label: "Apple Music", link: "#" },
-            { icon: <Youtube className="size-8" />, label: "YouTube", link: "#" },
-            { icon: <Instagram className="size-8" />, label: "Instagram", link: "#" }
+            { icon: <Music className="w-8 h-8" />, label: "Spotify", link: "#" },
+            { icon: <Music className="w-8 h-8" />, label: "Apple Music", link: "#" },
+            { icon: <Youtube className="w-8 h-8" />, label: "YouTube", link: "#" },
+            { icon: <Instagram className="w-8 h-8" />, label: "Instagram", link: "#" }
           ].map((item, idx) => (
             <motion.a
               key={item.label}
@@ -39,29 +39,28 @@ export function ArtistConnect() {
             </motion.a>
           ))}
         </div>
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
           className="w-full flex flex-col items-center"
         >
-          <span className="text-[11px] tracking-[0.2em] font-sans text-[#B8998A] mb-4 uppercase">FEATURED TRACK</span>
-          <h3 className="font-display italic text-[24px] text-wCream mb-8 px-4">Untungnya, Hidup Harus Tetap Berjalan</h3>
-          <div className="w-full max-w-[600px] rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/40 border border-white/5 relative">
-             <iframe
-                src="https://open.spotify.com/embed/track/6Zp7N9H2MscB5kXmXq0XUv?utm_source=generator&theme=0"
-                width="100%"
-                height="80"
-                style={{ border: 0, borderRadius: '12px' }}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          <span className="text-[11px] tracking-[0.2em] font-sans text-[#B8998A] mb-4 uppercase">NOW PLAYING</span>
+          <h3 className="font-display italic text-[24px] text-wCream mb-8">Untungnya, Hidup Harus Tetap Berjalan</h3>
+          <div className="w-full max-w-[600px] h-[80px] rounded-xl overflow-hidden shadow-2xl">
+             <iframe 
+                src="https://open.spotify.com/embed/track/6Zp7N9H2MscB5kXmXq0XUv?utm_source=generator&theme=0" 
+                width="100%" 
+                height="80" 
+                frameBorder="0" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy"
-                title="Spotify Featured Track"
               ></iframe>
           </div>
         </motion.div>
       </div>
-      <footer className="mt-auto py-8 w-full text-center">
+      <footer className="absolute bottom-8 w-full text-center px-4">
         <p className="font-sans text-[12px] opacity-50 tracking-[0.05em]">
           © 2024 Bernadya. Under Juni Records.
         </p>
