@@ -1,16 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 export function HeroSection() {
-  const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
     offset: ["start start", "end start"],
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
   return (
     <section
-      ref={containerRef}
       style={{ position: 'relative' }}
       className="snap-section bg-[#1a1a1a] overflow-hidden"
     >
