@@ -6,7 +6,7 @@ export function HeroSection() {
       {/* Background with 0.35 dark overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
+        style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1511221159820-22123d9061c0?q=80&w=2070&auto=format&fit=crop")',
         }}
       >
@@ -20,7 +20,7 @@ export function HeroSection() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-2xl"
         >
-          <h1 className="font-display text-[clamp(56px,10vw,90px)] text-white font-light uppercase leading-[1.1] tracking-[0.15em] text-shadow-lg">
+          <h1 className="font-display text-[clamp(42px,10vw,90px)] text-white font-light uppercase leading-[1.1] tracking-[0.15em] text-shadow-lg">
             HAPPY <br /> BIRTHDAY!
           </h1>
         </motion.div>
@@ -31,7 +31,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 1 }}
           className="absolute top-[5%] right-[8%] text-right"
         >
-          <span className="font-script text-[clamp(80px,12vw,130px)] text-white/95 italic leading-none block">
+          <span className="font-script text-[clamp(60px,12vw,130px)] text-white/95 italic leading-none block">
             18th
           </span>
         </motion.div>
@@ -42,7 +42,7 @@ export function HeroSection() {
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-[5%] left-[8%]"
         >
-          <p className="font-sans text-[clamp(14px,2vw,18px)] font-extralight text-white tracking-[0.2em] uppercase">
+          <p className="font-sans text-[clamp(12px,2vw,18px)] font-extralight text-white tracking-[0.2em] uppercase">
             December 21, 2025
           </p>
         </motion.div>
