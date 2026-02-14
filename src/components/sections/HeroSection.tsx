@@ -9,9 +9,9 @@ export function HeroSection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="snap-section bg-[#1a1a1a] overflow-hidden"
+      className="snap-section relative bg-[#1a1a1a] overflow-hidden"
     >
       <motion.div
         style={{ y: backgroundY, opacity }}
@@ -19,7 +19,7 @@ export function HeroSection() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-          style={{ 
+          style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1511221159820-22123d9061c0?q=80&w=2070&auto=format&fit=crop")',
           }}
         />

@@ -11,6 +11,7 @@ export default {
   			script: ['Great Vibes', 'cursive'],
 			logo: ['Dancing Script', 'cursive'],
 			georgia: ['Georgia', 'serif'],
+			lora: ['Lora', 'serif'],
   			mono: ['JetBrains Mono', 'monospace']
   		},
   		colors: {
