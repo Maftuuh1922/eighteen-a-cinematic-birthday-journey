@@ -4,6 +4,7 @@ import { AchievementSection } from '@/components/sections/AchievementSection';
 import { SpotifySection } from '@/components/sections/SpotifySection';
 import { AmiSection } from '@/components/sections/AmiSection';
 import { WishSection } from '@/components/sections/WishSection';
+import { MusicPlayer } from '@/components/ui/MusicPlayer';
 import { motion, AnimatePresence } from 'framer-motion';
 const SECTIONS = [
   { id: 'hero', label: 'Intro' },
@@ -73,6 +74,7 @@ export function HomePage() {
       className="snap-container bg-burgundy selection:bg-skyBlue selection:text-burgundy"
     >
       <div className="relative z-10">
+        <MusicPlayer />
         <div id="section-0" className="snap-section-wrapper"><HeroSection /></div>
         <div id="section-1" className="snap-section-wrapper"><AchievementSection /></div>
         <div id="section-2" className="snap-section-wrapper"><SpotifySection /></div>

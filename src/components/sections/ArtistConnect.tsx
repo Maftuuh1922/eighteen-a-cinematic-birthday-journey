@@ -48,12 +48,13 @@ export function ArtistConnect() {
         >
           <span className="text-[11px] tracking-[0.2em] font-sans text-[#B8998A] mb-4 uppercase">NOW PLAYING</span>
           <h3 className="font-display italic text-[24px] text-wCream mb-8 px-4">Untungnya, Hidup Harus Tetap Berjalan</h3>
-          <div className="w-full max-w-[600px] h-[80px] rounded-xl overflow-hidden shadow-2xl bg-black/20">
+          <div className="w-full max-w-[600px] h-[80px] rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/40 border border-white/5 relative">
              <iframe
                 src="https://open.spotify.com/embed/track/6Zp7N9H2MscB5kXmXq0XUv?utm_source=generator&theme=0"
                 width="100%"
                 height="80"
-                style={{ border: 0 }}
+                frameBorder="0"
+                style={{ border: 0, borderRadius: '12px' }}
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
                 title="Spotify Now Playing"
