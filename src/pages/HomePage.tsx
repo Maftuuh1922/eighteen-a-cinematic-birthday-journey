@@ -24,7 +24,6 @@ export function HomePage() {
     const scrollPos = container.scrollTop;
     const height = container.clientHeight;
     if (height === 0) return;
-    // Robust threshold-based index calculation
     const index = Math.floor((scrollPos + height / 2) / height);
     if (index >= 0 && index < SECTIONS.length) {
       setActiveSection((prev) => (prev !== index ? index : prev));
@@ -65,7 +64,7 @@ export function HomePage() {
     });
     setTimeout(() => {
       isScrolling.current = false;
-    }, 1000); // Increased timeout to ensure scroll settle
+    }, 1000);
   };
   return (
     <main
@@ -80,7 +79,6 @@ export function HomePage() {
         <div id="section-3" className="snap-section-wrapper"><AmiSection /></div>
         <div id="section-4" className="snap-section-wrapper"><WishSection /></div>
       </div>
-      {/* Side Navigation Indicators */}
       <nav className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6 hidden md:flex">
         {SECTIONS.map((section, i) => (
           <button
@@ -116,7 +114,6 @@ export function HomePage() {
           </button>
         ))}
       </nav>
-      {/* Mobile Scroll Indicator Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-[3px] z-[100] md:hidden bg-white/10">
         <motion.div
           className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,1)]"
