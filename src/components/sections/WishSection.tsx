@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 export function WishSection() {
   return (
-    <section className="snap-section flex flex-col md:flex-row overflow-hidden">
+    <section id="section-4" className="snap-section flex flex-col md:flex-row overflow-hidden">
       {/* Left 50%: Silhouette */}
       <motion.div
         initial={{ scale: 1.1, opacity: 0 }}
@@ -72,7 +72,7 @@ export function WishSection() {
             viewport={{ once: true }}
             className="font-georgia text-[15px] md:text-[16px] text-[#2a2a2a] leading-[1.8] md:leading-[1.9]"
           >
-            Selamat ulang tahun yang ke-21. Di usia yang semakin dewasa ini, semoga semangatmu untuk terus bercerita tak pernah padam. Teruslah menjadi pelabuhan bagi mereka yang sedang berlayar dalam kesedihan. ����
+            Selamat ulang tahun yang ke-21. Di usia yang semakin dewasa ini, semoga semangatmu untuk terus bercerita tak pernah padam. Teruslah menjadi pelabuhan bagi mereka yang sedang berlayar dalam kesedihan. 🎈
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -109,11 +109,11 @@ export function WishSection() {
               viewport={{ once: true }}
               className="inline-block ml-2 shrink-0"
             >
-              ✨��
+              ✨ 🎈
             </motion.span>
           </motion.div>
         </div>
-        <footer className="mt-12 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 opacity-30 text-center pb-8 md:pb-0">
+        <footer className="mt-auto py-8 text-center md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 opacity-30 w-full">
           <p className="font-lato text-[10px] tracking-widest uppercase">© 2025 A Tribute to Bernadya</p>
         </footer>
       </motion.div>

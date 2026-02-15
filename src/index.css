@@ -14,6 +14,8 @@
     padding: 0;
     overflow: hidden;
     background-color: #2D1B2E;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 @layer utilities {
@@ -27,6 +29,7 @@
     position: relative;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    scroll-padding-top: 0px;
   }
   .snap-container::-webkit-scrollbar {
     display: none;
@@ -51,11 +54,18 @@
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     z-index: 1;
   }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .text-shadow-premium {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+::selection {
+  background-color: #87CEEB;
+  color: #8B1538;
 }
