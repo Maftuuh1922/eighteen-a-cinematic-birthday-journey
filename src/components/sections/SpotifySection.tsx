@@ -63,7 +63,7 @@ export function SpotifySection() {
               viewport={{ once: true }}
               className="relative bg-white/95 p-[clamp(28px,4vw,45px)]
                 max-w-[520px] w-full shadow-[0_12px_40px_rgba(0,0,0,0.1)]
-                rounded-none overflow-visible border-l-[8px] border-burgundy z-30"
+                rounded-none overflow-visible border-l-[8px] border-burgundy z-30 transform-gpu"
             >
               <h3 className="font-display text-[clamp(20px,3vw,26px)] font-[700] text-[#1a1a1a]
                 leading-[1.35] mb-[clamp(16px,2vh,22px)] uppercase tracking-[0.02em]">
@@ -141,7 +141,7 @@ function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: Pola
         rotate: 0,
         scale: 1.05,
         zIndex: 50,
-        boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.35)"
+        boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.25)"
       }}
       transition={{
         y: { type: "spring", stiffness: 40, damping: 15, delay },
@@ -150,7 +150,7 @@ function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: Pola
       }}
       viewport={{ once: true }}
       className={cn(
-        "absolute bg-white p-[clamp(10px,2vw,15px)] pb-[clamp(35px,5vh,50px)] shadow-[0_8px_25px_rgba(0,0,0,0.2)] border border-white/40 cursor-pointer w-[clamp(180px,35vw,260px)] transform-gpu",
+        "absolute bg-white p-[clamp(10px,2vw,15px)] pb-[clamp(35px,5vh,50px)] shadow-[0_8px_25px_rgba(0,0,0,0.2)] border border-white/40 cursor-pointer w-[clamp(180px,35vw,260px)] transform-gpu will-change-transform",
         className
       )}
       style={{ zIndex }}

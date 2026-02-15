@@ -8,7 +8,7 @@ export function HeroSection() {
         initial={{ scale: 1.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 will-change-transform transform-gpu"
       >
         <img
           src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1600"
@@ -30,7 +30,7 @@ export function HeroSection() {
             HAPPY<br />BIRTHDAY!
           </h1>
         </motion.div>
-        {/* Floating Year Label - High fidelity staggered entrance */}
+        {/* Floating Year Label */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, rotate: 25, z: -100 }}
           whileInView={{ opacity: 1, scale: 1, rotate: -5, z: 0 }}
@@ -38,7 +38,7 @@ export function HeroSection() {
             type: "spring",
             stiffness: 70,
             damping: 18,
-            delay: 1.4,
+            delay: 1.2,
             duration: 1.8
           }}
           viewport={{ once: true }}
@@ -51,7 +51,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 2.2 }}
+          transition={{ duration: 1.2, delay: 2.0 }}
           viewport={{ once: true }}
           className="mb-[8%] ml-[5%] md:ml-0"
         >
@@ -63,12 +63,12 @@ export function HeroSection() {
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ delay: 3.2, duration: 1.2 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 2.8, duration: 1.2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 pointer-events-none"
       >
         <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
-        <span className="text-[9px] tracking-[0.3em] uppercase text-white font-sans">Scroll to begin</span>
+        <span className="text-[9px] tracking-[0.3em] uppercase text-white font-sans opacity-60">Scroll to begin</span>
       </motion.div>
     </section>
   );

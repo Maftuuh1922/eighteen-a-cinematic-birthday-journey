@@ -113,7 +113,7 @@ export function MusicPlayer() {
         "fixed bottom-[clamp(16px,3vh,24px)] right-[clamp(16px,3vw,24px)] z-[1000]",
         "w-[clamp(260px,28vw,300px)] max-w-[300px] bg-[#2D1B2E]/95 backdrop-blur-[10px] rounded-[14px]",
         "border border-[#F5E6D3]/10 shadow-[0_6_24px_rgba(0,0,0,0.25)]",
-        "p-[14px] transition-all duration-300",
+        "p-[14px] transition-all duration-300 transform-gpu",
         "max-md:w-[clamp(240px,85vw,280px)] max-md:bottom-[12px] max-md:right-[12px] max-md:p-3"
       )}
     >
@@ -129,11 +129,11 @@ export function MusicPlayer() {
           <motion.div
             animate={isPlaying ? { rotate: 360 } : {}}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="size-14 rounded-[8px] overflow-hidden bg-[#8B1538]/20 flex-shrink-0 mr-3"
+            className="size-14 rounded-[8px] overflow-hidden bg-[#8B1538]/20 flex-shrink-0 mr-3 transform-gpu"
           >
             <img src={track.cover} alt={track.title} className="w-full h-full object-cover" />
           </motion.div>
-          <div className="flex-1 min-width-0">
+          <div className="flex-1 min-w-0">
             <h4 className="font-display text-[clamp(13px,1.5vw,14px)] font-semibold text-[#F5E6D3] leading-tight truncate mb-0.5">
               {track.title}
             </h4>
@@ -142,8 +142,8 @@ export function MusicPlayer() {
             </p>
           </div>
         </div>
-        <div className="relative h-[3px] w-full bg-[#F5E6D3]/20 rounded-[2px] mb-2 cursor-pointer overflow-hidden" 
-             ref={progressRef} 
+        <div className="relative h-[3px] w-full bg-[#F5E6D3]/20 rounded-[2px] mb-2 cursor-pointer overflow-hidden"
+             ref={progressRef}
              onClick={handleSeek}>
           <motion.div
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#E8C4A8] to-[#F5E6D3]"
@@ -166,7 +166,7 @@ export function MusicPlayer() {
           <motion.button
             onClick={togglePlay}
             whileHover={{ scale: 1.05 }}
-            whileActive={{ scale: 0.95 }}
+            whileTap={{ scale: 0.92 }}
             className="size-[38px] max-md:size-[36px] rounded-full bg-[#8B1538]/90 text-[#F5E6D3] flex items-center justify-center shadow-[0_3px_10px_rgba(139,21,56,0.3)] transition-all"
             aria-label={isPlaying ? "Pause" : "Play"}
           >
