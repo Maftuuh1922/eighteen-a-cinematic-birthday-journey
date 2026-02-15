@@ -8,7 +8,7 @@ export function TrisaktiSection() {
         {/* Realistic Cloud Background */}
         <div
           className="absolute inset-0 bg-cover bg-center brightness-110"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=2000&auto=format&fit=crop")' }}
+          style={{ backgroundImage: 'url("/images/bercanda/2.jpeg")' }}
         />
         {/* Fused Logo Overlay */}
         <motion.div
@@ -29,12 +29,24 @@ export function TrisaktiSection() {
           transition={{ duration: 1, delay: 0.4 }}
           className="absolute bottom-6 left-6 md:bottom-20 md:left-12 bg-white/96 p-6 md:p-12 shadow-[0_10px_35px_rgba(0,0,0,0.08)] border-none rounded-none max-w-[85%] md:max-w-[550px] z-20 max-h-[30vh] md:max-h-none overflow-y-auto hide-scrollbar"
         >
-          <h2 className="font-display text-[clamp(18px,4vw,27px)] font-bold text-[#1a1a1a] uppercase mb-4 leading-[1.35] tracking-[0.02em]">
-            SELAMAAT YAAW SAYAANG UDAH MENGAMANKAN POSISI DI TRISAKTI MULTIMEDIA
-          </h2>
-          <p className="font-lora text-[clamp(14px,2.2vw,17px)] text-[#3a3a3a] leading-[1.75] tracking-[0.01em] text-justify font-normal">
-            Aku ikut bahagia banget pas tau kabar ini. Kamu bener-bener pantes dapetin ini setelah semua usaha yang udah kamu kasih. Multimedia Trisakti bakal jadi tempat yang seru banget buat kamu eksplor semua kreativitas kamu. Semangat yaa langkah barunya!
-          </p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            viewport={{ once: true }}
+            className="font-display text-[clamp(18px,4vw,27px)] font-bold text-[#1a1a1a] uppercase mb-4 leading-[1.35] tracking-[0.02em]"
+          >
+            CONGRATULATIONS ON SECURING YOUR POSITION AT TRISAKTI MULTIMEDIA
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            viewport={{ once: true }}
+            className="font-lora text-[clamp(14px,2.2vw,17px)] text-[#3a3a3a] leading-[1.75] tracking-[0.01em] text-justify font-normal"
+          >
+            I'm so happy to hear this news. You truly deserve this after all the effort you've put in. Trisakti Multimedia will be an amazing place for you to explore all your creativity. Good luck with your new journey!
+          </motion.p>
         </motion.div>
       </div>
       {/* RIGHT COLUMN: 40% */}
@@ -54,7 +66,7 @@ export function TrisaktiSection() {
           className="relative w-[clamp(200px,28vw,380px)] h-[clamp(280px,35vw,480px)] shadow-[0_15px_45px_rgba(0,0,0,0.3)] overflow-hidden rounded-t-full border-[10px] md:border-[18px] border-burgundy bg-[#2a2a2a] z-10"
         >
           <img
-            src="https://images.unsplash.com/photo-1618331812910-001dd92c5c36?q=80&w=1964&auto=format&fit=crop"
+            src="/images/bercanda/4.jpeg"
             alt="Mirror Selfie Hijab"
             className="w-full h-full object-cover grayscale-[0.1] hover:grayscale-0 transition-all duration-1000 ease-in-out"
           />

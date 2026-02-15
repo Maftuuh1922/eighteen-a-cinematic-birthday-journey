@@ -1,3 +1,5 @@
 
 # Bootstrap marker
 .bootstrap-complete
+.vercel
+node_modules

@@ -3,16 +3,21 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { AchievementSection } from '@/components/sections/AchievementSection';
 import { SpotifySection } from '@/components/sections/SpotifySection';
 import { AmiSection } from '@/components/sections/AmiSection';
+import { BercandaSection } from '@/components/sections/BercandaSection';
 import { WishSection } from '@/components/sections/WishSection';
-import { MusicPlayer } from '@/components/ui/MusicPlayer';
+
+import { MagicalEffects } from '@/components/ui/MagicalEffects';
 import { motion, AnimatePresence } from 'framer-motion';
+
 const SECTIONS = [
   { id: 'hero', label: 'Intro' },
   { id: 'achievement', label: 'History' },
   { id: 'spotify', label: 'Records' },
   { id: 'ami', label: 'Awards' },
+  { id: 'bercanda', label: 'Photos' },
   { id: 'wish', label: 'Wishes' }
 ];
+
 export function HomePage() {
   const [activeSection, setActiveSection] = useState(0);
   const containerRef = useRef<HTMLElement>(null);
@@ -72,12 +77,14 @@ export function HomePage() {
       className="snap-container bg-burgundy selection:bg-skyBlue selection:text-burgundy"
     >
       <div className="relative z-10">
-        <MusicPlayer />
+        <MagicalEffects />
+
         <div id="section-0" className="snap-section-wrapper"><HeroSection /></div>
         <div id="section-1" className="snap-section-wrapper"><AchievementSection /></div>
         <div id="section-2" className="snap-section-wrapper"><SpotifySection /></div>
         <div id="section-3" className="snap-section-wrapper"><AmiSection /></div>
-        <div id="section-4" className="snap-section-wrapper"><WishSection /></div>
+        <div id="section-4" className="snap-section-wrapper"><BercandaSection /></div>
+        <div id="section-5" className="snap-section-wrapper"><WishSection /></div>
       </div>
       <nav className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6 hidden md:flex">
         {SECTIONS.map((section, i) => (

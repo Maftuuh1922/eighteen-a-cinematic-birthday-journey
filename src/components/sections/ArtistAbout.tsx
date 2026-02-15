@@ -14,7 +14,7 @@ export function ArtistAbout() {
         >
           <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-2xl mb-8 grayscale hover:grayscale-0 transition-all duration-1000">
             <img
-              src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=800"
+              src="/images/bercanda/3.jpeg"
               alt="Bernadya Portrait"
               className="w-full h-full object-cover"
             />

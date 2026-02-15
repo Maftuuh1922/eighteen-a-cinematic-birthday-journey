@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { PeekingCat, PawTrail } from '../ui/CatDecorations';
 export function AmiSection() {
   const images = [
-    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500",
-    "https://images.unsplash.com/photo-1514525253361-bee8718a340b?w=500",
-    "https://images.unsplash.com/photo-1459749411177-042180ce673c?w=500",
-    "https://images.unsplash.com/photo-1501612722273-d48e83344332?w=500",
-    "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=500"
+    "/images/bercanda/2.jpeg",
+    "/images/bercanda/3.jpeg",
+    "/images/bercanda/4.jpeg",
+    "/images/bercanda/5.jpeg",
+    "/images/bercanda/6.jpeg"
   ];
   return (
     <section className="snap-section bg-[#F5F5F0] flex flex-col md:flex-row overflow-hidden">
@@ -39,7 +40,7 @@ export function AmiSection() {
               viewport={{ once: true }}
               className="font-georgia text-[15px] md:text-[16px] text-[#2a2a2a] leading-[1.8] font-bold uppercase tracking-wide"
             >
-              ANUGERAH MUSIK INDONESIA ADALAH SAKSI DARI KERJA KERAS, AIR MATA, DAN DEDIKASI YANG TAK TERHINGGA.
+              ANUGERAH MUSIK INDONESIA IS A WITNESS TO HARD WORK, TEARS, AND ENDLESS DEDICATION.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 25 }}
@@ -48,7 +49,7 @@ export function AmiSection() {
               viewport={{ once: true }}
               className="font-georgia text-[15px] md:text-[16px] text-[#4a4a4a] leading-[1.8]"
             >
-              Dari pendatang baru hingga menjadi pilar musik pop melankolis, Bernadya membuktikan bahwa kualitas musik akan selalu menemukan jalannya. Setiap piala adalah pelukan dari industri untuk kejujuran yang ia tawarkan.
+              From a newcomer to becoming a pillar of melancholic pop music, Bernadya proves that musical quality will always find its way. Every trophy is an embrace from the industry for the honesty she offers.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 25 }}
@@ -57,7 +58,7 @@ export function AmiSection() {
               viewport={{ once: true }}
               className="font-georgia text-[15px] md:text-[16px] text-burgundy leading-[1.8] font-bold italic"
             >
-              Teruslah terbang tinggi, ini baru awal dari perjalanan panjangmu!
+              Keep flying high, this is just the beginning of your long journey!
             </motion.p>
           </div>
         </motion.div>
@@ -85,6 +86,20 @@ export function AmiSection() {
           </motion.div>
         ))}
       </div>
+      <PeekingCat
+        className="absolute bottom-0 left-[3%] z-[15]"
+        color="white"
+        opacity={0.1}
+        size={38}
+        delay={2}
+      />
+      <PawTrail
+        className="absolute bottom-3 right-[5%] z-[15]"
+        color="white"
+        opacity={0.06}
+        count={3}
+        delay={2.5}
+      />
     </section>
   );
 }

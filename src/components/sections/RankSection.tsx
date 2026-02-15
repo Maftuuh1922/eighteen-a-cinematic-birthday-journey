@@ -62,19 +62,19 @@ export function RankSection() {
         </motion.div>
         <div className="relative h-full flex items-center justify-center">
           <Polaroid
-            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1974&auto=format&fit=crop"
+            src="/images/bercanda/6.jpeg"
             rotate={-7}
             className="absolute top-[10%] left-[5%] w-[140px] md:w-[260px] z-10"
             delay={0.6}
           />
           <Polaroid
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop"
+            src="/images/bercanda/7.jpeg"
             rotate={5}
             className="absolute top-[20%] right-[5%] w-[130px] md:w-[240px] z-20"
             delay={0.8}
           />
           <Polaroid
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2064&auto=format&fit=crop"
+            src="/images/bercanda/8.jpeg"
             rotate={9}
             className="absolute bottom-[10%] left-[20%] w-[140px] md:w-[250px] z-25"
             delay={1.0}

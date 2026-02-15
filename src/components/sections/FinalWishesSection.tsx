@@ -7,11 +7,19 @@ export function FinalWishesSection() {
       <div className="w-full md:w-1/2 h-[40%] md:h-full relative overflow-hidden flex items-center justify-center bg-black shrink-0">
         <div
           className="absolute inset-0 bg-cover bg-center grayscale opacity-60 scale-105"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1516714819001-8ee7a13b71d7?q=80&w=2070&auto=format&fit=crop")' }}
+          style={{ backgroundImage: 'url("/images/bercanda/6.jpeg")' }}
         />
         <div className="absolute inset-0 bg-burgundy/20 mix-blend-color" />
         <div className="absolute top-8 left-8 md:top-10 md:left-10 z-20">
-          <span className="font-display italic text-base md:text-2xl text-white/60 tracking-[0.25em] uppercase">EIGHTEEN</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.8 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="font-display italic text-base md:text-2xl text-white/60 tracking-[0.25em] uppercase"
+          >
+            EIGHTEEN
+          </motion.span>
         </div>
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
@@ -41,7 +49,15 @@ export function FinalWishesSection() {
           transition={{ duration: 1, delay: 0.3 }}
           className="absolute top-10 right-10 md:top-12 md:right-12"
         >
-          <span className="font-script text-[clamp(48px,8vw,80px)] text-burgundy/80 italic leading-none">to love</span>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, type: "spring" }}
+            viewport={{ once: true }}
+            className="font-script text-[clamp(48px,8vw,80px)] text-burgundy/80 italic leading-none"
+          >
+            to love
+          </motion.span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -50,15 +66,30 @@ export function FinalWishesSection() {
           transition={{ duration: 1, delay: 0.5 }}
           className="max-w-[540px] space-y-6 md:space-y-8 font-georgia text-[clamp(15px,2vw,17px)] leading-[1.8] md:leading-[2.0] text-[#2a2a2a] text-left"
         >
-          <p>
-            happy 18th birthday, dissyaaaaa!! sekarang udah resmi masuk masa kedewasaan yaa, hehe. aku doain semoga apa yang kamu cita-citain pelan-pelan bisa terwujud, tetep jadi diri sendiri yang selalu ceria dan kuat.
-          </p>
-          <p>
-            Aku harap kamu tetep semangat ya buat semua hal yang lagi kamu perjuangin sekarang. jangan lupa buat bahagia juga, karena itu yang paling penting di hidup. i'm really glad to have you in my life and witness your growth.
-          </p>
-          <p>
-            Selamat ulang tahun my love, enjoy your new chapter, and i'm so excited to see all the great things you'll achieve in the future. enjoy every bit of it, dissyaa!! u deserve all the love today!
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            viewport={{ once: true }}
+          >
+            Bernadya is a reminder that we all have stories worth telling. Through her music, she shows that the courage to be vulnerable is the greatest strength we can have.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            viewport={{ once: true }}
+          >
+            Thank you for being the voice for those who cannot express their own feelings. Your songs are a harbor in the ocean of sadness.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+            viewport={{ once: true }}
+          >
+            Keep telling your stories, Bernadya. This world needs more honest voices like yours. We will always look forward to new songs that will accompany us on our life journeys.
+          </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { PeekingCat, PawTrail } from '../ui/CatDecorations';
 export function AchievementSection() {
-  const heading = "Selamat Ulang Tahun Bernadya Ribka Jayakusuma!";
+  const heading = "Bernadya Ribka Jayakusuma";
   return (
     <section className="snap-section flex flex-col md:flex-row overflow-hidden h-[100dvh] bg-white">
       {/* Left 60%: Playful sky blue with clouds */}
@@ -9,9 +10,9 @@ export function AchievementSection() {
         className="relative w-full md:w-[60%] h-[50dvh] md:h-full overflow-hidden shrink-0"
       >
         {/* Background Image: Clear blue sky clouds */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1600")' }}
+          style={{ backgroundImage: 'url("/images/bercanda/2.jpeg")' }}
         />
         {/* Logo: Positioned Absolute Top-8 Left-12 */}
         <motion.div
@@ -34,18 +35,33 @@ export function AchievementSection() {
           whileInView={{ opacity: 0.96, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
           viewport={{ once: true }}
-          className="absolute bottom-12 left-8 md:bottom-20 md:left-12 z-20 bg-white p-[clamp(32px,4vw,52px)] md:px-[clamp(42px,5vw,55px)] max-w-[560px] w-[calc(100%-64px)] shadow-[0_12px_40px_rgba(0,0,0,0.1)] rounded-none"
+          className="absolute bottom-12 left-8 md:bottom-20 md:left-12 z-20 bg-white p-[clamp(32px,4vw,52px)] md:px-[clamp(42px,5vw,55px)] max-w-[560px] w-[calc(100%-64px)] shadow-[0_12px_40px_rgba(0,0,0,0.1)] rounded-none overflow-hidden"
         >
+          {/* Dramatic window sunlight shadow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-100/15 via-white/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/10 via-transparent to-gray-100/20 pointer-events-none" />
+          <div className="absolute -left-[20%] top-0 w-[60%] h-full bg-gradient-to-r from-amber-200/8 via-yellow-100/5 to-transparent blur-2xl pointer-events-none" />
+          <div className="absolute left-0 top-[20%] w-[40%] h-[60%] bg-gradient-to-br from-amber-300/5 via-orange-100/3 to-transparent blur-xl pointer-events-none" />
           <h2 className="font-display text-[clamp(24px,3vw,28px)] font-bold text-[#1a1a1a] leading-[1.35] mb-[clamp(18px,2vh,24px)] capitalize tracking-[0.01em]">
             {heading}
           </h2>
           <div className="space-y-4 font-georgia text-[clamp(15px,1.6vw,17px)] text-[#3a3a3a] leading-[1.8]">
-            <p>
-              Selamat ulang tahun untuk sosok yang menyembuhkan dengan luka yang ia tuangkan dalam nada.
-            </p>
-            <p>
-              Terima kasih telah menjadi suara bagi hati yang senyap, dan tetap bersinar di antara ribuan bintang lainnya.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              viewport={{ once: true }}
+            >
+              An artist who heals through the wounds she pours into every note. Her music reminds us that vulnerability is strength, and sadness can be a harbor.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              viewport={{ once: true }}
+            >
+              From small platforms to becoming a voice for millions of hearts, Bernadya proves that honesty in expression will always find its way home.
+            </motion.p>
           </div>
         </motion.div>
       </div>
@@ -79,7 +95,7 @@ export function AchievementSection() {
               whileInView={{ scale: 1 }}
               transition={{ duration: 2, delay: 1.2 }}
               viewport={{ once: true }}
-              src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1200"
+              src="/images/bercanda/1.jpeg"
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
               style={{ filter: 'brightness(1.05) contrast(1.02)' }}
               alt="Bernadya Portrait"
@@ -87,6 +103,21 @@ export function AchievementSection() {
           </motion.div>
         </div>
       </div>
+      {/* Cat decorations */}
+      <PeekingCat
+        className="absolute bottom-0 left-[8%] z-[15]"
+        color="#333"
+        opacity={0.08}
+        size={40}
+        delay={2}
+      />
+      <PawTrail
+        className="absolute bottom-4 right-[10%] z-[15]"
+        color="#8B1538"
+        opacity={0.06}
+        count={3}
+        delay={2.5}
+      />
     </section>
   );
 }

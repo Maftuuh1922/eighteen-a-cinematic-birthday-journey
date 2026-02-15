@@ -103,6 +103,7 @@ export function MusicPlayer() {
     return () => document.removeEventListener('click', handleFirstClick);
   }, [hasInteracted]);
   if (!isVisible) return null;
+
   return (
     <motion.div
       initial={{ y: 50, opacity: 0 }}
@@ -110,11 +111,11 @@ export function MusicPlayer() {
       exit={{ y: 50, opacity: 0 }}
       transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "fixed bottom-[clamp(16px,3vh,24px)] right-[clamp(16px,3vw,24px)] z-[1000]",
-        "w-[clamp(260px,28vw,300px)] max-w-[300px] bg-[#2D1B2E]/95 backdrop-blur-[10px] rounded-[14px]",
-        "border border-[#F5E6D3]/10 shadow-[0_6_24px_rgba(0,0,0,0.25)]",
-        "p-[14px] transition-all duration-300 transform-gpu",
-        "max-md:w-[clamp(240px,85vw,280px)] max-md:bottom-[12px] max-md:right-[12px] max-md:p-3"
+        "fixed bottom-[clamp(8px,2vh,12px)] right-[clamp(8px,2vw,12px)] z-[1000]",
+        "w-[clamp(160px,20vw,200px)] max-w-[200px] bg-[#2D1B2E]/95 backdrop-blur-[8px] rounded-[8px]",
+        "border border-[#F5E6D3]/10 shadow-[0_2_8px_rgba(0,0,0,0.25)]",
+        "p-[8px] transition-all duration-300 transform-gpu",
+        "max-md:w-[clamp(140px,70vw,180px)] max-md:bottom-[6px] max-md:right-[6px] max-md:p-1.5"
       )}
     >
       <button
@@ -125,24 +126,24 @@ export function MusicPlayer() {
         <X className="size-4" />
       </button>
       <div className="flex flex-col">
-        <div className="flex items-center mb-3">
+        <div className="flex items-center mb-1.5">
           <motion.div
             animate={isPlaying ? { rotate: 360 } : {}}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="size-14 rounded-[8px] overflow-hidden bg-[#8B1538]/20 flex-shrink-0 mr-3 transform-gpu"
+            className="size-8 rounded-[4px] overflow-hidden bg-[#8B1538]/20 flex-shrink-0 mr-1.5 transform-gpu"
           >
             <img src={track.cover} alt={track.title} className="w-full h-full object-cover" />
           </motion.div>
           <div className="flex-1 min-w-0">
-            <h4 className="font-display text-[clamp(13px,1.5vw,14px)] font-semibold text-[#F5E6D3] leading-tight truncate mb-0.5">
+            <h4 className="font-display text-[clamp(9px,0.9vw,11px)] font-semibold text-[#F5E6D3] leading-tight truncate mb-0.5">
               {track.title}
             </h4>
-            <p className="font-sans text-[clamp(11px,1.2vw,12px)] text-[#E8C4A8]/70 truncate">
+            <p className="font-sans text-[clamp(8px,0.8vw,9px)] text-[#E8C4A8]/70 truncate">
               {track.artist}
             </p>
           </div>
         </div>
-        <div className="relative h-[3px] w-full bg-[#F5E6D3]/20 rounded-[2px] mb-2 cursor-pointer overflow-hidden"
+        <div className="relative h-[2px] w-full bg-[#F5E6D3]/20 rounded-[1px] mb-1 cursor-pointer overflow-hidden"
              ref={progressRef}
              onClick={handleSeek}>
           <motion.div
@@ -151,37 +152,37 @@ export function MusicPlayer() {
             transition={{ type: "tween", ease: "linear", duration: 0.1 }}
           />
         </div>
-        <div className="flex justify-between items-center font-sans text-[10px] text-[#F5E6D3]/50 mb-3">
+        <div className="flex justify-between items-center font-sans text-[8px] text-[#F5E6D3]/50 mb-1.5">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
         <div className="flex items-center justify-center gap-[clamp(10px,2vw,16px)]">
           <button
             onClick={handlePrev}
-            className="p-1.5 text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all active:scale-95"
+            className="p-0.5 text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all active:scale-95"
             aria-label="Previous"
           >
-            <SkipBack className="size-4 fill-current" />
+            <SkipBack className="size-3 fill-current" />
           </button>
           <motion.button
             onClick={togglePlay}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.92 }}
-            className="size-[38px] max-md:size-[36px] rounded-full bg-[#8B1538]/90 text-[#F5E6D3] flex items-center justify-center shadow-[0_3px_10px_rgba(139,21,56,0.3)] transition-all"
+            className="size-[24px] max-md:size-[22px] rounded-full bg-[#8B1538]/90 text-[#F5E6D3] flex items-center justify-center shadow-[0_1px_4px_rgba(139,21,56,0.3)] transition-all"
             aria-label={isPlaying ? "Pause" : "Play"}
           >
             {isPlaying ? (
-              <Pause className="size-4 fill-current" />
+              <Pause className="size-3 fill-current" />
             ) : (
-              <Play className="size-4 fill-current ml-0.5" />
+              <Play className="size-3 fill-current ml-0.5" />
             )}
           </motion.button>
           <button
             onClick={handleNext}
-            className="p-1.5 text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all active:scale-95"
+            className="p-0.5 text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all active:scale-95"
             aria-label="Next"
           >
-            <SkipForward className="size-4 fill-current" />
+            <SkipForward className="size-3 fill-current" />
           </button>
         </div>
       </div>

@@ -49,34 +49,34 @@ export function FirstOnMindSection() {
       </div>
       <div className="w-full md:w-[45%] h-[60%] md:h-full relative grid grid-cols-2 gap-3 md:gap-6 overflow-y-auto hide-scrollbar pt-6 md:pt-0">
         <Polaroid
-          src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop"
+          src="/images/bercanda/7.jpeg"
           rotate={-3}
           className="w-full"
           delay={0.3}
           caption="Car Rides"
         />
         <Polaroid
-          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1974&auto=format&fit=crop"
+          src="/images/bercanda/8.jpeg"
           rotate={6}
           className="w-full mt-8 md:mt-16"
           delay={0.4}
           caption="Outdoors"
         />
         <Polaroid
-          src="https://images.unsplash.com/photo-1523240715639-99a2f05eb40e?q=80&w=2070&auto=format&fit=crop"
+          src="/images/bercanda/9.jpeg"
           rotate={-8}
           className="w-full"
           delay={0.5}
         />
         <Polaroid
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+          src="/images/bercanda/10.jpeg"
           rotate={4}
           className="w-full -mt-4 md:-mt-8"
           delay={0.6}
         />
         <div className="col-span-2 flex justify-center pb-12">
           <Polaroid
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+            src="/images/bercanda/11.jpeg"
             rotate={2}
             className="w-[160px] md:w-[260px]"
             delay={0.7}

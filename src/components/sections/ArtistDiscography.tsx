@@ -6,14 +6,14 @@ const RELEASES = [
     type: "ALBUM • 2024",
     desc: "Album debut yang mengeksplorasi fase-fase kesedihan pasca perpisahan. Memuat hits seperti 'Kata Mereka Ini Berlebihan'.",
     stats: "Produced by Petra Sihombing & Rendy Pandugo",
-    img: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800"
+    img: "/images/bercanda/4.jpeg"
   },
   {
     title: "Terlintas",
     type: "EP • 2023",
     desc: "Kumpulan cerita tentang keraguan dan pertanyaan yang muncul di tengah malam. Sebuah perkenalan rasa yang jujur.",
     stats: "Includes: Apa Mungkin, Masa Sepi, Terlintas",
-    img: "https://images.unsplash.com/photo-1514525253361-bee8718a340b?auto=format&fit=crop&q=80&w=800"
+    img: "/images/bercanda/5.jpeg"
   }
 ];
 export function ArtistDiscography() {
@@ -42,10 +42,42 @@ export function ArtistDiscography() {
               <img src={album.img} alt={album.title} className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className="font-display text-[clamp(22px,2.5vw,28px)] text-cream mb-1">{album.title}</h3>
-            <p className="font-sans text-[13px] text-wCream font-medium tracking-wider mb-3">{album.type}</p>
-            <p className="font-body text-[15px] text-cream/80 leading-[1.7] mb-3">{album.desc}</p>
-            <p className="font-sans text-[12px] text-[#B8998A] italic uppercase tracking-widest">{album.stats}</p>
+            <motion.h3
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.2 + 0.3 }}
+              viewport={{ once: true }}
+              className="font-display text-[clamp(22px,2.5vw,28px)] text-cream mb-1"
+            >
+              {album.title}
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.2 + 0.4 }}
+              viewport={{ once: true }}
+              className="font-sans text-[13px] text-wCream font-medium tracking-wider mb-3"
+            >
+              {album.type}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.2 + 0.5 }}
+              viewport={{ once: true }}
+              className="font-body text-[15px] text-cream/80 leading-[1.7] mb-3"
+            >
+              {album.desc}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.2 + 0.6 }}
+              viewport={{ once: true }}
+              className="font-sans text-[12px] text-[#B8998A] italic uppercase tracking-widest"
+            >
+              {album.stats}
+            </motion.p>
           </motion.div>
         ))}
       </div>
