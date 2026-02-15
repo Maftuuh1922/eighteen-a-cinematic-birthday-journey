@@ -1,6 +1,6 @@
 # Birthday Wish 18
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Maftuuh1922/eighteen-a-cinematic-birthday-journey)
 
 ## Overview
 
@@ -107,7 +107,7 @@ This builds the app and deploys via Wrangler.
 
 Alternatively, use the instant deploy button:
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Maftuuh1922/eighteen-a-cinematic-birthday-journey)
 
 Your app will be live on `*.workers.dev` or a custom domain via Cloudflare Pages.
 
