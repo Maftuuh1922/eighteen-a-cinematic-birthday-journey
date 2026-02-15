@@ -24,7 +24,8 @@ export function HomePage() {
     const scrollPos = container.scrollTop;
     const height = container.clientHeight;
     if (height === 0) return;
-    const index = Math.round(scrollPos / height);
+    // Robust threshold-based index calculation
+    const index = Math.floor((scrollPos + height / 2) / height);
     if (index >= 0 && index < SECTIONS.length) {
       setActiveSection((prev) => (prev !== index ? index : prev));
     }
@@ -38,7 +39,6 @@ export function HomePage() {
     };
     const handleResize = () => {
       const currentHeight = container.clientHeight;
-      // Only re-scroll if the height changed significantly (ignores mobile URL bar jitter)
       if (Math.abs(currentHeight - lastHeight.current) > 50) {
         lastHeight.current = currentHeight;
         container.scrollTo({
@@ -63,10 +63,9 @@ export function HomePage() {
       top: index * container.clientHeight,
       behavior: 'smooth'
     });
-    // Reset scroll lock after animation duration
     setTimeout(() => {
       isScrolling.current = false;
-    }, 800);
+    }, 1000); // Increased timeout to ensure scroll settle
   };
   return (
     <main
@@ -95,9 +94,9 @@ export function HomePage() {
                 <motion.span
                   key={`label-${section.id}`}
                   initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 0.6, x: 0 }}
+                  animate={{ opacity: 0.8, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
-                  className="text-[10px] font-sans tracking-[0.2em] uppercase text-white"
+                  className="text-[10px] font-sans font-medium tracking-[0.25em] uppercase text-white"
                 >
                   {section.label}
                 </motion.span>
@@ -106,7 +105,7 @@ export function HomePage() {
             <div className="w-[2px] h-10 bg-white/20 relative overflow-hidden transition-colors duration-300 group-hover:bg-white/40">
               <motion.div
                 initial={false}
-                animate={{ 
+                animate={{
                   scaleY: activeSection === i ? 1 : 0,
                   backgroundColor: activeSection === i ? "#FFFFFF" : "rgba(255,255,255,0.2)"
                 }}
@@ -120,14 +119,12 @@ export function HomePage() {
       {/* Mobile Scroll Indicator Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-[3px] z-[100] md:hidden bg-white/10">
         <motion.div
-          className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]"
-          animate={{ 
+          className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,1)]"
+          animate={{
             width: `${((activeSection + 1) / SECTIONS.length) * 100}%`,
-            opacity: [0.7, 1, 0.7]
           }}
-          transition={{ 
-            width: { duration: 0.4, ease: "easeOut" },
-            opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          transition={{
+            width: { duration: 0.4, ease: "easeOut" }
           }}
         />
       </div>
