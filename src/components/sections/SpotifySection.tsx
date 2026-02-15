@@ -12,7 +12,7 @@ export function SpotifySection() {
       <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] h-full w-full relative z-10">
         <div className="relative flex flex-col h-full w-full z-20 overflow-y-auto hide-scrollbar">
           <div className="relative w-full shrink-0 h-[clamp(180px,25dvh,250px)] mb-[clamp(30px,5vh,60px)]">
-            <div className="absolute top-[clamp(50px,8vh,80px)] left-[clamp(32px,6vw,60px)] z-[1] flex items-baseline gap-[clamp(18px,3vw,30px)]">
+            <div className="absolute top-[clamp(50px,8vh,80px)] left-[clamp(32px,6vw,60px)] z-[1] flex items-baseline gap-[clamp(18px,3vw,30px)] pointer-events-none">
               <motion.h2
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -50,7 +50,7 @@ export function SpotifySection() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
               viewport={{ once: true }}
-              className="absolute top-[clamp(40px,7vh,70px)] right-[clamp(80px,15vw,180px)] text-white z-[4]"
+              className="absolute top-[clamp(40px,7vh,70px)] right-[clamp(80px,15vw,180px)] text-white z-[4] pointer-events-none"
             >
               <Star className="w-[clamp(40px,6vw,60px)] h-[clamp(40px,6vw,60px)]" fill="white" strokeWidth={0} />
             </motion.div>
@@ -63,7 +63,7 @@ export function SpotifySection() {
               viewport={{ once: true }}
               className="relative bg-white/95 p-[clamp(28px,4vw,45px)]
                 max-w-[520px] w-full shadow-[0_12px_40px_rgba(0,0,0,0.1)]
-                rounded-none overflow-visible border-l-[8px] border-burgundy"
+                rounded-none overflow-visible border-l-[8px] border-burgundy z-30"
             >
               <h3 className="font-display text-[clamp(20px,3vw,26px)] font-[700] text-[#1a1a1a]
                 leading-[1.35] mb-[clamp(16px,2vh,22px)] uppercase tracking-[0.02em]">
@@ -86,7 +86,7 @@ export function SpotifySection() {
             viewport={{ once: true }}
             className="absolute top-[clamp(20px,5vw,40px)] right-[clamp(20px,5vw,40px)]
               bg-white w-[clamp(70px,10vw,90px)] h-[clamp(70px,10vw,90px)]
-              rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.1)] z-20"
+              rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.1)] z-20 pointer-events-none"
           >
             <span className="font-lato font-[700] text-[clamp(13px,1.5vw,16px)] text-[#2a2a2a] tracking-[0.05em]">
               1 OF 3
@@ -137,16 +137,16 @@ function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: Pola
       initial={{ opacity: 0, y: 100, rotate: rotation + 10 }}
       whileInView={{ opacity: 1, y: 0, rotate: rotation }}
       whileHover={{
-        y: -25,
+        y: -15,
         rotate: 0,
-        scale: 1.1,
-        zIndex: 100,
-        boxShadow: "0 40px 70px -15px rgba(0, 0, 0, 0.45)"
+        scale: 1.05,
+        zIndex: 50,
+        boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.35)"
       }}
       transition={{
         y: { type: "spring", stiffness: 40, damping: 15, delay },
         rotate: { duration: 1, delay },
-        scale: { duration: 0.3 }
+        scale: { duration: 0.2 }
       }}
       viewport={{ once: true }}
       className={cn(
@@ -155,7 +155,7 @@ function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: Pola
       )}
       style={{ zIndex }}
     >
-      <div className="aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
+      <div className="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 pointer-events-none">
         <img
           src={src}
           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
@@ -163,7 +163,7 @@ function PolaroidItem({ src, caption, rotation, zIndex, delay, className }: Pola
           loading="lazy"
         />
       </div>
-      <p className="font-dancing text-[14px] text-[#666] text-center mt-2 lowercase">
+      <p className="font-dancing text-[14px] text-[#666] text-center mt-2 lowercase pointer-events-none">
         {caption}
       </p>
     </motion.div>

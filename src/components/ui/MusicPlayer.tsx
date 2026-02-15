@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, X, Music } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 interface Track {
   id: string;
@@ -15,21 +15,21 @@ const PLAYLIST: Track[] = [
     title: 'Untungnya, Hidup Harus Tetap Berjalan',
     artist: 'Bernadya',
     cover: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=300',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' // Placeholder
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
   },
   {
     id: '2',
     title: 'Satu Bulan',
     artist: 'Bernadya',
     cover: 'https://images.unsplash.com/photo-1514525253361-bee8718a340b?auto=format&fit=crop&q=80&w=300',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' // Placeholder
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
   },
   {
     id: '3',
     title: 'Kata Mereka Ini Berlebihan',
     artist: 'Bernadya',
     cover: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=300',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' // Placeholder
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
   }
 ];
 export function MusicPlayer() {
@@ -45,14 +45,8 @@ export function MusicPlayer() {
   const progressRef = useRef<HTMLDivElement>(null);
   const track = PLAYLIST[currentTrackIndex];
   const togglePlay = useCallback(() => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(e => console.error("Playback failed", e));
-    }
-    setIsPlaying(!isPlaying);
-  }, [isPlaying]);
+    setIsPlaying(prev => !prev);
+  }, []);
   const handleNext = useCallback(() => {
     setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
     setIsPlaying(true);
@@ -64,9 +58,9 @@ export function MusicPlayer() {
   const onTimeUpdate = () => {
     if (audioRef.current) {
       const cur = audioRef.current.currentTime;
-      const dur = audioRef.current.duration;
+      const dur = audioRef.current.duration || 0;
       setCurrentTime(cur);
-      setProgress((cur / dur) * 100);
+      setProgress(dur > 0 ? (cur / dur) * 100 : 0);
     }
   };
   const onLoadedMetadata = () => {
@@ -75,7 +69,7 @@ export function MusicPlayer() {
     }
   };
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (progressRef.current && audioRef.current) {
+    if (progressRef.current && audioRef.current && audioRef.current.duration) {
       const rect = progressRef.current.getBoundingClientRect();
       const pos = (e.clientX - rect.left) / rect.width;
       audioRef.current.currentTime = pos * audioRef.current.duration;
@@ -86,14 +80,33 @@ export function MusicPlayer() {
     const secs = Math.floor(time % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
-  // Auto-play on first click anywhere in the document
+  // Sync audio element with isPlaying state and track changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const playAudio = async () => {
+      try {
+        if (isPlaying) {
+          await audio.play();
+        } else {
+          audio.pause();
+        }
+      } catch (error) {
+        console.warn("Playback prevented by browser policy", error);
+        setIsPlaying(false);
+      }
+    };
+    playAudio();
+    return () => {
+      audio.pause();
+    };
+  }, [isPlaying, currentTrackIndex]);
+  // Handle first interaction for auto-play
   useEffect(() => {
     const handleFirstClick = () => {
       if (!hasInteracted) {
         setHasInteracted(true);
-        if (audioRef.current) {
-          audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-        }
+        setIsPlaying(true);
         document.removeEventListener('click', handleFirstClick);
       }
     };
@@ -105,12 +118,6 @@ export function MusicPlayer() {
       audioRef.current.volume = volume;
     }
   }, [volume]);
-  // Handle source changes
-  useEffect(() => {
-    if (audioRef.current && isPlaying) {
-      audioRef.current.play().catch(() => {});
-    }
-  }, [currentTrackIndex]);
   if (!isVisible) return null;
   return (
     <motion.div
@@ -126,16 +133,16 @@ export function MusicPlayer() {
         "max-md:w-[clamp(240px,80vw,280px)] max-md:bottom-[15px] max-md:right-[15px] max-md:p-3"
       )}
     >
-      <button 
+      <button
         onClick={() => setIsVisible(false)}
         className="absolute top-2 right-2 p-1 text-[#F5E6D3]/50 hover:text-[#F5E6D3] transition-colors"
+        aria-label="Close player"
       >
         <X className="size-4" />
       </button>
       <div className="flex flex-col gap-3">
-        {/* Album Art & Info */}
         <div className="flex items-center gap-4">
-          <motion.div 
+          <motion.div
             animate={isPlaying ? { rotate: 360 } : {}}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="size-[clamp(50px,6vw,64px)] rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.2)] bg-burgundy/20 flex-shrink-0"
@@ -154,14 +161,13 @@ export function MusicPlayer() {
             </p>
           </div>
         </div>
-        {/* Progress Bar */}
         <div className="space-y-1.5 mt-1">
-          <div 
+          <div
             ref={progressRef}
             onClick={handleSeek}
             className="relative h-1 w-full bg-[#F5E6D3]/20 rounded-full cursor-pointer overflow-hidden group"
           >
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#E8C4A8] to-[#F5E6D3]"
               style={{ width: `${progress}%` }}
               transition={{ type: "tween", ease: "linear", duration: 0.1 }}
@@ -172,17 +178,18 @@ export function MusicPlayer() {
             <span>{formatTime(duration)}</span>
           </div>
         </div>
-        {/* Controls */}
         <div className="flex items-center justify-center gap-5 mt-1">
-          <button 
+          <button
             onClick={handlePrev}
             className="text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all duration-300"
+            aria-label="Previous track"
           >
             <SkipBack className="size-5 fill-current" />
           </button>
-          <button 
+          <button
             onClick={togglePlay}
             className="size-11 rounded-full bg-burgundy/90 text-[#F5E6D3] flex items-center justify-center shadow-[0_4px_12px_rgba(139,21,56,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 group"
+            aria-label={isPlaying ? "Pause" : "Play"}
           >
             <AnimatePresence mode="wait">
               {isPlaying ? (
@@ -206,28 +213,28 @@ export function MusicPlayer() {
               )}
             </AnimatePresence>
           </button>
-          <button 
+          <button
             onClick={handleNext}
             className="text-[#F5E6D3]/70 hover:text-[#F5E6D3] hover:scale-110 transition-all duration-300"
+            aria-label="Next track"
           >
             <SkipForward className="size-5 fill-current" />
           </button>
         </div>
-        {/* Volume */}
         <div className="flex items-center gap-3 mt-1 group">
           <Volume2 className="size-3.5 text-[#F5E6D3]/40 group-hover:text-[#F5E6D3]/70 transition-colors" />
-          <input 
-            type="range" 
-            min="0" 
-            max="1" 
-            step="0.01" 
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
             value={volume}
             onChange={(e) => setVolume(parseFloat(e.target.value))}
             className="w-full h-[3px] bg-[#F5E6D3]/20 rounded-full appearance-none cursor-pointer accent-[#E8C4A8] hover:accent-[#F5E6D3] transition-all"
           />
         </div>
       </div>
-      <audio 
+      <audio
         ref={audioRef}
         src={track.src}
         onTimeUpdate={onTimeUpdate}
