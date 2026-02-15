@@ -24,13 +24,13 @@ export function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true }}
-          className="mt-[15%] md:mt-[8%]"
+          className="mt-[clamp(12%,15%,18%)] md:mt-[8%]"
         >
           <h1 className="font-display font-[300] text-[clamp(48px,10vw,90px)] text-white leading-[1.05] tracking-[0.15em] uppercase will-change-transform">
             HAPPY<br />BIRTHDAY!
           </h1>
         </motion.div>
-        {/* Floating Year Label */}
+        {/* Floating Year Label - Refined with Premium Shadow */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
           whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
@@ -42,9 +42,9 @@ export function HeroSection() {
             duration: 1.5
           }}
           viewport={{ once: true }}
-          className="absolute top-[45%] md:top-[12%] right-[10%] md:right-[8%]"
+          className="absolute top-[clamp(40%,45%,48%)] md:top-[12%] right-[clamp(5%,10%,15%)] md:right-[8%]"
         >
-          <span className="font-script text-[clamp(90px,15vw,160px)] text-white/95 italic drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] leading-none">
+          <span className="font-script text-[clamp(90px,15vw,160px)] text-white/95 italic text-shadow-premium leading-none">
             21st
           </span>
         </motion.div>

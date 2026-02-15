@@ -5,96 +5,94 @@ import { cn } from '@/lib/utils';
 export function SpotifySection() {
   return (
     <section id="section-2" className="snap-section relative w-full h-[100dvh] bg-blueGray overflow-hidden select-none">
-      {/* Background Decorative Lines - Reduced Opacity */}
+      {/* Background Decorative Lines - Background Z-0 */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px)' }}
       />
-      {/* Main Grid Container */}
-      <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] h-full w-full">
-        {/* Left Column (55%): Narrative & Header */}
-        <div className="relative flex flex-col justify-between h-full w-full
-          px-[clamp(40px,8vw,80px)] py-[clamp(40px,6vh,60px)]
-          lg:px-[clamp(60px,5vw,80px)] lg:py-[clamp(40px,6vh,60px)]
-          z-20 overflow-y-auto hide-scrollbar">
-          {/* Header Area */}
-          <div className="relative mb-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="flex items-baseline"
-            >
-              <h2 className="font-display font-[300] text-[clamp(40px,6vw,56px)] text-white inline-block uppercase tracking-[0.1em] leading-none">
+      <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] h-full w-full relative z-10">
+        {/* Left Column (55%) */}
+        <div className="relative flex flex-col h-full w-full z-20 overflow-y-auto hide-scrollbar">
+          {/* URGENT SEC3 REBUILD: Header Area */}
+          <div className="relative w-full shrink-0 h-[clamp(180px,25dvh,250px)] mb-[clamp(30px,5vh,60px)]">
+            {/* Typography Area - Z-1 */}
+            <div className="absolute top-[clamp(50px,8vh,80px)] left-[clamp(40px,6vw,60px)] z-[1] flex items-baseline gap-[clamp(18px,3vw,30px)]">
+              <motion.h2
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="font-display font-[300] text-[clamp(40px,6vw,58px)] text-white uppercase tracking-[0.1em] leading-none inline-block"
+              >
                 Spotify
-              </h2>
+              </motion.h2>
               <motion.span
                 initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 60, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="font-script text-[clamp(120px,15vw,180px)] text-white inline-block ml-[clamp(10px,4vw,60px)] relative top-[10px] leading-[0.8]"
+                className="font-script text-[clamp(150px,20vw,220px)] text-white inline-block relative top-[clamp(18px,3vw,30px)] leading-[0.75] italic"
               >
                 #1
               </motion.span>
-            </motion.div>
-            {/* Absolute Top Banner */}
+            </div>
+            {/* Burgundy Banner - Z-5 */}
             <motion.div
               initial={{ y: -100, x: "-50%", rotate: -10 }}
               whileInView={{ y: 0, x: "-50%", rotate: -2.5 }}
               transition={{ type: "spring", damping: 12, delay: 0.8 }}
               viewport={{ once: true }}
-              className="absolute top-[clamp(20px,5vh,40px)] left-1/2 -translate-x-1/2
-                bg-burgundy/95 px-[clamp(28px,4vw,40px)] py-[clamp(12px,2vh,16px)]
-                shadow-[0_4px_15px_rgba(0,0,0,0.2)] z-10 whitespace-nowrap transform-gpu"
+              className="absolute top-[clamp(50px,8vh,80px)] left-1/2 -translate-x-1/2
+                bg-[#8B1538]/92 px-[clamp(32px,5vw,45px)] py-[clamp(14px,2vh,18px)]
+                shadow-[0_6px_20px_rgba(0,0,0,0.25)] z-[5] whitespace-nowrap transform-gpu"
             >
-              <span className="font-display font-[400] text-[clamp(18px,3vw,28px)] text-white uppercase tracking-wider">
+              <span className="font-display font-[400] text-[clamp(20px,3vw,32px)] text-white uppercase tracking-[0.02em]">
                 12.7M Monthly Listeners!!
               </span>
             </motion.div>
-            {/* Visual Accent: Star */}
+            {/* Star Icon - Z-4 */}
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 0.8, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
               viewport={{ once: true }}
-              className="absolute top-[clamp(15px,3vh,30px)] right-[clamp(40px,10vw,150px)] text-white z-5"
+              className="absolute top-[clamp(40px,7vh,70px)] right-[clamp(100px,15vw,180px)] text-white z-[4]"
             >
-              <Star className="w-[clamp(36px,5vw,52px)] h-[clamp(36px,5vw,52px)]" fill="currentColor" strokeWidth={0} />
+              <Star className="w-[clamp(40px,6vw,60px)] h-[clamp(40px,6vw,60px)]" fill="white" strokeWidth={0} />
             </motion.div>
           </div>
-          {/* Narrative Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            viewport={{ once: true }}
-            className="relative mt-[clamp(140px,25vh,200px)] bg-white/97 p-[clamp(32px,4vw,45px)]
-              md:p-[clamp(35px,5vw,48px)] max-w-[520px] w-full shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-              rounded-none overflow-visible border-l-[8px] border-burgundy"
-          >
-            <h3 className="font-display text-[clamp(21px,3vw,26px)] font-[700] text-[#1a1a1a]
-              leading-[1.35] mb-[clamp(16px,2vh,22px)] uppercase tracking-[0.02em] break-words">
-              PENYANYI PEREMPUAN PALING DIDENGARKAN... INSANE!
-            </h3>
-            <p className="font-georgia text-[clamp(14px,1.5vw,16px)] font-[400] text-[#3a3a3a]
-              leading-[1.75] tracking-[0.01em] italic break-words hyphens-auto">
-              "Pencapaian ini bukan sekadar angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Bernandya pecahin rekor gila ini... INSANE!"
-            </p>
-          </motion.div>
+          {/* Narrative Card - Bottom Area */}
+          <div className="px-[clamp(40px,8vw,80px)] pb-[clamp(40px,6vh,60px)] lg:px-[clamp(60px,5vw,80px)]">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2 }}
+              viewport={{ once: true }}
+              className="relative bg-white/95 p-[clamp(32px,4vw,45px)]
+                max-w-[520px] w-full shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+                rounded-none overflow-visible border-l-[8px] border-burgundy"
+            >
+              <h3 className="font-display text-[clamp(21px,3vw,26px)] font-[700] text-[#1a1a1a]
+                leading-[1.35] mb-[clamp(16px,2vh,22px)] uppercase tracking-[0.02em]">
+                PENYANYI PEREMPUAN PALING DIDENGARKAN... INSANE!
+              </h3>
+              <p className="font-georgia text-[clamp(14px,1.5vw,16px)] font-[400] text-[#3a3a3a]
+                leading-[1.75] tracking-[0.01em] italic">
+                "Pencapaian ini bukan sekadar angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Bernandya pecahin rekor gila ini... INSANE!"
+              </p>
+            </motion.div>
+          </div>
         </div>
         {/* Right Column (45%): Polaroid Stacks */}
         <div className="relative flex items-center justify-center h-full w-full
           px-[clamp(40px,8vw,80px)] py-[clamp(40px,6vh,60px)] z-10
           bg-white/10 lg:bg-transparent min-h-[50dvh] lg:min-h-full">
-          {/* Floating Badge */}
           <motion.div
             initial={{ scale: 0, rotate: 45 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 100, delay: 1.5 }}
             viewport={{ once: true }}
-            className="absolute top-[clamp(20px,5vh,40px)] right-[clamp(20px,5vw,40px)]
+            className="absolute top-[clamp(20px,5vw,40px)] right-[clamp(20px,5vw,40px)]
               bg-white w-[clamp(70px,10vw,90px)] h-[clamp(70px,10vw,90px)]
               rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.1)] z-20"
           >
@@ -102,7 +100,6 @@ export function SpotifySection() {
               1 OF 3
             </span>
           </motion.div>
-          {/* Polaroid Stack Container */}
           <div className="relative w-full max-w-[500px] h-[60dvh] mx-auto flex items-center justify-center">
             <PolaroidItem
               src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600"
