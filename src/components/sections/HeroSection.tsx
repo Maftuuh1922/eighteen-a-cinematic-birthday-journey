@@ -30,7 +30,7 @@ export function HeroSection() {
             HAPPY<br />BIRTHDAY!
           </h1>
         </motion.div>
-        {/* Floating Year Label - Refined with Premium Shadow */}
+        {/* Floating Year Label - Positioned higher on mobile for clearance */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
           whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
@@ -42,7 +42,7 @@ export function HeroSection() {
             duration: 1.5
           }}
           viewport={{ once: true }}
-          className="absolute top-[clamp(40%,45%,48%)] md:top-[12%] right-[clamp(5%,10%,15%)] md:right-[8%]"
+          className="absolute top-[clamp(35%,40%,42%)] md:top-[12%] right-[clamp(5%,10%,15%)] md:right-[8%]"
         >
           <span className="font-script text-[clamp(90px,15vw,160px)] text-white/95 italic text-shadow-premium leading-none">
             21st

@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 export function SpotifySection() {
   return (
-    <section id="section-2" className="snap-section relative w-full h-[100dvh] bg-blueGray overflow-hidden select-none">
+    <section className="snap-section relative w-full h-[100dvh] bg-blueGray overflow-hidden select-none">
       {/* Background Decorative Lines - Background Z-0 */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
@@ -78,7 +78,7 @@ export function SpotifySection() {
               </h3>
               <p className="font-georgia text-[clamp(14px,1.5vw,16px)] font-[400] text-[#3a3a3a]
                 leading-[1.75] tracking-[0.01em] italic">
-                "Pencapaian ini bukan sekadar angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Bernandya pecahin rekor gila ini... INSANE!"
+                "Pencapaian ini bukan sekadar angka, melainkan bukti nyata bahwa kejujuran dalam lirikmu memiliki rumah di hati jutaan orang. Bernadya pecahin rekor gila ini... INSANE!"
               </p>
             </motion.div>
           </div>

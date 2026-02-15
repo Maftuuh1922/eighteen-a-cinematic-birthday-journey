@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 export function WishSection() {
   return (
-    <section id="section-4" className="snap-section flex flex-col md:flex-row overflow-hidden">
+    <section className="snap-section flex flex-col md:flex-row overflow-hidden">
       {/* Left 50%: Silhouette */}
       <motion.div
         initial={{ scale: 1.1, opacity: 0 }}
