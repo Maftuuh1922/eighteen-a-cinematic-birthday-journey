@@ -3,7 +3,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { AchievementSection } from '@/components/sections/AchievementSection';
 import { SpotifySection } from '@/components/sections/SpotifySection';
 import { AmiSection } from '@/components/sections/AmiSection';
-import { BercandaSection } from '@/components/sections/BercandaSection';
+import { FlipbookSection } from '@/components/sections/FlipbookSection';
 import { WishSection } from '@/components/sections/WishSection';
 
 import { MagicalEffects } from '@/components/ui/MagicalEffects';
@@ -14,7 +14,7 @@ const SECTIONS = [
   { id: 'achievement', label: 'History' },
   { id: 'spotify', label: 'Records' },
   { id: 'ami', label: 'Awards' },
-  { id: 'bercanda', label: 'Photos' },
+  { id: 'flipbook', label: 'Journey' },
   { id: 'wish', label: 'Wishes' }
 ];
 
@@ -83,7 +83,7 @@ export function HomePage() {
         <div id="section-1" className="snap-section-wrapper"><AchievementSection /></div>
         <div id="section-2" className="snap-section-wrapper"><SpotifySection /></div>
         <div id="section-3" className="snap-section-wrapper"><AmiSection /></div>
-        <div id="section-4" className="snap-section-wrapper"><BercandaSection /></div>
+        <div id="section-4" className="snap-section-wrapper"><FlipbookSection /></div>
         <div id="section-5" className="snap-section-wrapper"><WishSection /></div>
       </div>
       <nav className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6 hidden md:flex">
