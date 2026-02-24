@@ -25,6 +25,11 @@ export function HomePage() {
   const lastHeight = useRef(0);
   const isScrolling = useRef(false);
 
+  // Update document title
+  useEffect(() => {
+    document.title = 'Nayla 18 – Museum Kenangan';
+  }, []);
+
   const updateActiveSection = useCallback(() => {
     const container = containerRef.current;
     if (!container || isScrolling.current) return;
