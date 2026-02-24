@@ -38,7 +38,7 @@ const GEO = {
 // FLOOR — Polished dark wood (lightweight, HD look)
 const Floor = () => (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
-        <planeGeometry args={[130, 130]} />
+        <planeGeometry args={[130, 130, 1, 1]} />
         <meshStandardMaterial color="#5a3518" roughness={0.35} metalness={0.12} />
     </mesh>
 );
@@ -46,7 +46,7 @@ const Floor = () => (
 // CEILING
 const Ceiling = () => (
     <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 8.5, 0]}>
-        <planeGeometry args={[130, 130]} />
+        <planeGeometry args={[130, 130, 1, 1]} />
         <meshStandardMaterial color="#dfd3b8" roughness={1} />
     </mesh>
 );
@@ -76,18 +76,18 @@ const Wall = ({ position, rotation = [0, 0, 0] as [number, number, number], w = 
     </group>
 );
 
-// CEILING COFFER BEAMS — Pendopo style
+// CEILING COFFER BEAMS — Pendopo style (optimized segments)
 const CeilingBeams = () => (
     <group position={[0, 8.2, 0]}>
         {[-44, -22, 0, 22, 44].map((x, i) => (
             <mesh key={`b-${i}`} position={[x, 0, 0]}>
-                <boxGeometry args={[0.5, 0.55, 120]} />
+                <boxGeometry args={[0.5, 0.55, 120, 1, 1, 1]} />
                 <meshStandardMaterial color="#2a1800" roughness={0.85} />
             </mesh>
         ))}
         {[-50, -25, 0, 25, 50].map((z, i) => (
             <mesh key={`c-${i}`} position={[0, 0.02, z]}>
-                <boxGeometry args={[120, 0.4, 0.5]} />
+                <boxGeometry args={[120, 0.4, 0.5, 1, 1, 1]} />
                 <meshStandardMaterial color="#3a2200" roughness={0.88} />
             </mesh>
         ))}
@@ -1422,13 +1422,13 @@ const WallDecorations = () => (
     </>
 );
 
-// ELEGANT ROSE PETALS AND SPARKLES - Scattered around the museum (replaces gift boxes)
+// ELEGANT ROSE PETALS AND SPARKLES - Scattered around the museum (replaces gift boxes) - OPTIMIZED
 const RosePetalsAndSparkles = () => {
     const petalPositions = useMemo(() => {
         const positions: [number, number, number][] = [];
-        // Scatter rose petals along the walk path and around tables
-        for (let i = 0; i < 80; i++) {
-            const angle = (i / 80) * Math.PI * 2;
+        // Reduced from 80 to 40 petals for better performance
+        for (let i = 0; i < 40; i++) {
+            const angle = (i / 40) * Math.PI * 2;
             const radius = 10 + Math.random() * 40;
             const x = Math.cos(angle) * radius + (Math.random() - 0.5) * 10;
             const z = Math.sin(angle) * radius + (Math.random() - 0.5) * 10;
@@ -1439,9 +1439,9 @@ const RosePetalsAndSparkles = () => {
 
     const sparklePositions = useMemo(() => {
         const positions: [number, number, number][] = [];
-        // Floating sparkles at various heights
-        for (let i = 0; i < 40; i++) {
-            const angle = (i / 40) * Math.PI * 2;
+        // Reduced from 40 to 20 sparkles for better performance
+        for (let i = 0; i < 20; i++) {
+            const angle = (i / 20) * Math.PI * 2;
             const radius = 15 + Math.random() * 35;
             const x = Math.cos(angle) * radius;
             const z = Math.sin(angle) * radius;
@@ -1600,13 +1600,10 @@ export const Environment = ({ museumBatiks }: { museumBatiks: any[] }) => {
             <HangingLantern position={[0, 7.5, -40]} />
             <HangingLantern position={[0, 7.5, 40]} />
 
-            {/* Confetti Clusters on tables */}
+            {/* Confetti Clusters on tables - Reduced for performance */}
             <ConfettiCluster position={[-25, 1.2, -40]} />
             <ConfettiCluster position={[25, 1.2, 40]} />
-            <ConfettiCluster position={[40, 1.2, -25]} />
-            <ConfettiCluster position={[-40, 1.2, 25]} />
             <ConfettiCluster position={[0, 1.2, 25]} />
-            <ConfettiCluster position={[-30, 1.2, 0]} />
         </>
     );
 };

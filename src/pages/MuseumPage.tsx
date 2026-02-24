@@ -261,16 +261,16 @@ export function MuseumPage() {
                 }>
                 <Canvas
                     shadows
-                    camera={{ fov: 65, near: 0.1, far: 200, position: [0, 1.7, 12] }}  // Spawn in front of center table (moved back a bit)
-                    dpr={[1, 2]}  // Adaptive pixel ratio
-                    performance={{ min: 0.5 }}  // Auto-scale on low FPS
+                    camera={{ fov: 65, near: 0.1, far: 200, position: [0, 1.7, 12] }}
+                    dpr={[1, 1.5]}  // More aggressive scaling (max 1.5 instead of 2)
+                    performance={{ min: 0.5, ramp: 0.5 }}  // Faster recovery
                     gl={{
                         antialias: true,
                         powerPreference: 'high-performance',
                         alpha: false,
                         stencil: false,
                         depth: true,
-                        logarithmicDepthBuffer: true,  // Better depth precision
+                        logarithmicDepthBuffer: true,
                         preserveDrawingBuffer: false,
                     }}
                 >

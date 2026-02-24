@@ -93,7 +93,7 @@ export function MemoryReelSection() {
 
             {/* Absolute Minimal Footer overlay on bottom */}
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#050305] via-[#050305] to-transparent pt-20 pb-10 flex flex-col items-center justify-center z-20 pointer-events-none gap-2">
-                <p className="font-script text-[1.8rem] text-[#C9A84C]/50">Made with love by Kenza Zahra</p>
+                <p className="font-script text-[1.8rem] text-[#C9A84C]/50">Made with love by Maftuh</p>
                 <p className="font-sans text-[0.5rem] tracking-widest text-[#F7F0E6]/20 uppercase">For Nayla</p>
             </div>
         </section>
