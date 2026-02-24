@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { AchievementSection } from '@/components/sections/AchievementSection';
-import { SpotifySection } from '@/components/sections/SpotifySection';
-import { AmiSection } from '@/components/sections/AmiSection';
+import { CinematicHero } from '@/components/sections/CinematicHero';
+import { QuoteSection } from '@/components/sections/QuoteSection';
+import { PhotoGridSection } from '@/components/sections/PhotoGridSection';
 import { FlipbookSection } from '@/components/sections/FlipbookSection';
-import { WishSection } from '@/components/sections/WishSection';
+import { MessageSection } from '@/components/sections/MessageSection';
+import { OutroSection } from '@/components/sections/OutroSection';
+import { MemoryReelSection } from '@/components/sections/MemoryReelSection';
 
-import { MagicalEffects } from '@/components/ui/MagicalEffects';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const SECTIONS = [
-  { id: 'hero', label: 'Intro' },
-  { id: 'achievement', label: 'History' },
-  { id: 'spotify', label: 'Records' },
-  { id: 'ami', label: 'Awards' },
-  { id: 'flipbook', label: 'Journey' },
-  { id: 'wish', label: 'Wishes' }
+  { id: 'intro', label: 'Intro' },
+  { id: 'quote', label: '17th' },
+  { id: 'photos', label: 'Momen' },
+  { id: 'flipbook', label: 'Album' },
+  { id: 'message', label: 'Surat' },
+  { id: 'outro', label: 'Outro' },
+  { id: 'memory-reel', label: 'Reel' }
 ];
 
 export function HomePage() {
@@ -23,6 +24,7 @@ export function HomePage() {
   const containerRef = useRef<HTMLElement>(null);
   const lastHeight = useRef(0);
   const isScrolling = useRef(false);
+
   const updateActiveSection = useCallback(() => {
     const container = containerRef.current;
     if (!container || isScrolling.current) return;
@@ -34,6 +36,7 @@ export function HomePage() {
       setActiveSection((prev) => (prev !== index ? index : prev));
     }
   }, []);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -58,6 +61,7 @@ export function HomePage() {
       window.removeEventListener('resize', handleResize);
     };
   }, [activeSection, updateActiveSection]);
+
   const scrollToSection = (index: number) => {
     const container = containerRef.current;
     if (!container) return;
@@ -71,21 +75,25 @@ export function HomePage() {
       isScrolling.current = false;
     }, 1000);
   };
+
   return (
     <main
       ref={containerRef}
-      className="snap-container bg-burgundy selection:bg-skyBlue selection:text-burgundy"
+      className="snap-container bg-background selection:bg-gold_accent selection:text-background"
     >
-      <div className="relative z-10">
-        <MagicalEffects />
+      <div className="relative z-10 w-full">
+        {/* Film grain noise background globally enforced through index.css overlay */}
+        <div className="noise-bg pointer-events-none" />
 
-        <div id="section-0" className="snap-section-wrapper"><HeroSection /></div>
-        <div id="section-1" className="snap-section-wrapper"><AchievementSection /></div>
-        <div id="section-2" className="snap-section-wrapper"><SpotifySection /></div>
-        <div id="section-3" className="snap-section-wrapper"><AmiSection /></div>
-        <div id="section-4" className="snap-section-wrapper"><FlipbookSection /></div>
-        <div id="section-5" className="snap-section-wrapper"><WishSection /></div>
+        <div id="section-0" className="snap-section-wrapper"><CinematicHero /></div>
+        <div id="section-1" className="snap-section-wrapper"><QuoteSection /></div>
+        <div id="section-2" className="snap-section-wrapper"><PhotoGridSection /></div>
+        <div id="section-3" className="snap-section-wrapper"><FlipbookSection /></div>
+        <div id="section-4" className="snap-section-wrapper"><MessageSection /></div>
+        <div id="section-5" className="snap-section-wrapper"><OutroSection /></div>
+        <div id="section-6" className="snap-section-wrapper"><MemoryReelSection /></div>
       </div>
+
       <nav className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6 hidden md:flex">
         {SECTIONS.map((section, i) => (
           <button
@@ -101,18 +109,18 @@ export function HomePage() {
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 0.8, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
-                  className="text-[10px] font-sans font-medium tracking-[0.25em] uppercase text-white"
+                  className="text-[10px] font-subtitle tracking-[0.25em] uppercase text-soft_cream"
                 >
                   {section.label}
                 </motion.span>
               )}
             </AnimatePresence>
-            <div className="w-[2px] h-10 bg-white/20 relative overflow-hidden transition-colors duration-300 group-hover:bg-white/40">
+            <div className="w-[2px] h-10 bg-soft_cream/10 relative overflow-hidden transition-colors duration-300 group-hover:bg-soft_cream/30">
               <motion.div
                 initial={false}
                 animate={{
                   scaleY: activeSection === i ? 1 : 0,
-                  backgroundColor: activeSection === i ? "#FFFFFF" : "rgba(255,255,255,0.2)"
+                  backgroundColor: activeSection === i ? "#d4a847" : "rgba(245, 237, 224, 0.1)"
                 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 origin-top"
@@ -121,9 +129,10 @@ export function HomePage() {
           </button>
         ))}
       </nav>
-      <div className="fixed top-0 left-0 w-full h-[3px] z-[100] md:hidden bg-white/10">
+
+      <div className="fixed top-0 left-0 w-full h-[3px] z-[100] md:hidden bg-soft_cream/10">
         <motion.div
-          className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,1)]"
+          className="h-full bg-gold_accent shadow-[0_0_15px_rgba(212,168,71,0.5)]"
           animate={{
             width: `${((activeSection + 1) / SECTIONS.length) * 100}%`,
           }}

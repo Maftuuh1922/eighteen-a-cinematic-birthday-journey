@@ -4,28 +4,39 @@ import './FlipbookSection.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 
+// ─── Constants ───────────────────────────────────────────────
+const ROW_1_PHOTOS = ['/images/bercanda/2.jpeg', '/images/bercanda/3.jpeg', '/images/bercanda/4.jpeg', '/images/bercanda/5.jpeg', '/images/bercanda/6.jpeg'];
+const ROW_2_PHOTOS = ['/images/bercanda/7.jpeg', '/images/bercanda/8.jpeg', '/images/bercanda/9.jpeg', '/images/bercanda/10.jpeg', '/images/bercanda/11.jpeg'];
+
+// Image fallback handler
+const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget;
+    target.style.background = 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)';
+    target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23ddd" width="100" height="100"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-size="14"%3ENo Image%3C/text%3E%3C/svg%3E';
+};
+
 // ─── Page Data ───────────────────────────────────────────────
 const PAGES = [
     {
         type: 'cover' as const,
-        bg: 'linear-gradient(135deg, #8B1538 0%, #6B1028 40%, #4A0B1C 100%)',
+        bg: 'linear-gradient(135deg, #1a1410 0%, #0d0a08 40%, #000000 100%)',
         image: '',
         content: {
-            title: 'BERCANDA',
+            title: 'NAYLA',
             subtitle: 'A Cinematic Birthday Journey',
-            artist: 'Bernadya Ribka',
-            year: '2025',
+            artist: 'For You',
+            year: '',
         },
     },
     {
         type: 'story' as const,
         bg: '#FFFDF8',
-        image: '/images/bercanda/1.jpeg',
+        image: '/images/bercanda/12.jpeg',
         content: {
             chapter: 'Chapter I',
-            title: 'The Beginning',
-            text: 'An artist who heals through the wounds she pours into every note. Her music reminds us that vulnerability is strength, and sadness can be a harbor.',
-            quote: '"From a simple bedroom to the biggest stages..."',
+            title: 'Haii Sayang',
+            text: 'Makasih ya udah kuat sampai hari ini. Nggak kerasa waktu cepet banget berlalunya, aku seneng banget bisa lihat kamu sejauh ini.',
+            quote: '"Makasih udah hadir di duniaku..."',
         },
     },
     {
@@ -33,8 +44,8 @@ const PAGES = [
         bg: '#F5F5F0',
         image: '/images/bercanda/2.jpeg',
         content: {
-            caption: 'Finding her sound',
-            year: '2023',
+            caption: 'Senyum manismu',
+            year: '',
         },
     },
     {
@@ -43,9 +54,9 @@ const PAGES = [
         image: '/images/bercanda/3.jpeg',
         content: {
             chapter: 'Chapter II',
-            title: 'Rising Star',
-            text: 'From small platforms to becoming a voice for millions of hearts, Bernadya proves that honesty in expression will always find its way home.',
-            quote: '"12.7M Monthly Listeners — Most Streamed Female Artist"',
+            title: 'Momen Kita',
+            text: 'Masa-masa bareng kamu tuh selalu seru. Banyak banget hal gila dan canda tawa yang kita lewati. You make everything better.',
+            quote: '"Every second with you is precious..."',
         },
     },
     {
@@ -53,8 +64,8 @@ const PAGES = [
         bg: '#F0EDE8',
         image: '/images/bercanda/4.jpeg',
         content: {
-            caption: 'The craft',
-            year: '2024',
+            caption: 'Our tiny moments',
+            year: '',
         },
     },
     {
@@ -63,9 +74,9 @@ const PAGES = [
         image: '/images/bercanda/5.jpeg',
         content: {
             chapter: 'Chapter III',
-            title: '3 AMI Awards',
-            text: 'Anugerah Musik Indonesia is a witness to hard work, tears, and endless dedication. Every trophy is an embrace from the industry for the honesty she offers.',
-            quote: '"Keep flying high, this is just the beginning..."',
+            title: 'Tumbuh Bareng',
+            text: 'Semoga kamu makin bahagia, makin sehat, dan selalu jadi dirimu sendiri. Jangan pernah ngerasa sendiri ya, aku selalu ada buat kamu.',
+            quote: '"Keep glowing sayang..."',
         },
     },
     {
@@ -73,8 +84,8 @@ const PAGES = [
         bg: '#F5F5F0',
         image: '/images/bercanda/6.jpeg',
         content: {
-            caption: 'Golden hour vibes',
-            year: '2024',
+            caption: 'You are loved',
+            year: '',
         },
     },
     {
@@ -83,9 +94,9 @@ const PAGES = [
         image: '/images/bercanda/7.jpeg',
         content: {
             chapter: 'Chapter IV',
-            title: 'The Journey Continues',
-            text: 'Bernadya is a mirror for many of us who try to be strong while staying true to ourselves. Through every song, she shows that being vulnerable is not a weakness.',
-            quote: '"Her journey is proof that an honest voice will always find its listeners"',
+            title: 'Langkah Kedepan',
+            text: 'Apapun impianmu selanjutnya, pokoknya aku dukung penuh. Kalau capek, istirahat dulu, terus jalan lagi.',
+            quote: '"Aku bangga luar biasa sama kamu..."',
         },
     },
     {
@@ -93,8 +104,8 @@ const PAGES = [
         bg: '#F0EDE8',
         image: '/images/bercanda/8.jpeg',
         content: {
-            caption: 'Studio moments',
-            year: '2024',
+            caption: 'Beautiful soul',
+            year: '',
         },
     },
     {
@@ -102,8 +113,8 @@ const PAGES = [
         bg: '#F5F5F0',
         image: '/images/bercanda/9.jpeg',
         content: {
-            caption: 'On stage energy',
-            year: '2025',
+            caption: 'Never change',
+            year: '',
         },
     },
     {
@@ -111,8 +122,8 @@ const PAGES = [
         bg: '#F0EDE8',
         image: '/images/bercanda/10.jpeg',
         content: {
-            caption: 'Behind the scenes',
-            year: '2025',
+            caption: 'My favorite person',
+            year: '',
         },
     },
     {
@@ -120,20 +131,20 @@ const PAGES = [
         bg: '#FFFDF8',
         image: '/images/bercanda/11.jpeg',
         content: {
-            title: 'A Tribute to Her Artistry',
-            text: 'This is a tribute to all that you have given, and excitement for all that is yet to come.',
-            signature: 'Love you always, Nad! ✨',
-            footer: '© 2025 A Tribute to Bernadya',
+            title: 'Untuk Kamu Tersayang',
+            text: 'Buku kecil ini buat ngingetin betapa berharganya kamu di hidupku. Makasih ya udah lahir di dunia ini.',
+            signature: 'Love you always, Nayla! ✨',
+            footer: '© 2025 A Tribute to Nayla',
         },
     },
     {
         type: 'backcover' as const,
-        bg: 'linear-gradient(135deg, #6B1028 0%, #8B1538 50%, #4A0B1C 100%)',
+        bg: 'linear-gradient(135deg, #0d0a08 0%, #1a1410 50%, #000000 100%)',
         image: '',
         content: {
-            title: 'BERCANDA',
-            text: 'Terima kasih sudah menjadi bagian dari perjalanan ini.',
-            year: '2025',
+            title: 'NAYLA',
+            text: 'Sekali lagi, makasih ya sayang udah selalu ngasih yang terbaik buat sekelilingmu.',
+            year: '',
         },
     },
 ];
@@ -141,14 +152,15 @@ const PAGES = [
 // ─── Helper: get book dimensions based on viewport ───────────
 function getBookDimensions(isMobile: boolean) {
     if (isMobile) {
-        const w = Math.min(Math.floor(window.innerWidth * 0.88), 380);
-        const h = Math.min(Math.floor(window.innerHeight * 0.62), 540);
+        // Mobile: single page, takes most of screen width
+        const w = Math.min(Math.floor(window.innerWidth * 0.9), 400);
+        const h = Math.min(Math.floor(window.innerHeight * 0.55), 580);
         return { pageWidth: w, pageHeight: h };
     }
     // Desktop: show two pages side by side
-    const maxH = Math.min(Math.floor(window.innerHeight * 0.72), 650);
-    const pageW = Math.floor(maxH * 0.72); // aspect ratio ~0.72
-    return { pageWidth: Math.min(pageW, 450), pageHeight: maxH };
+    const maxH = Math.min(Math.floor(window.innerHeight * 0.7), 680);
+    const pageW = Math.floor(maxH * 0.7); // aspect ratio ~0.7
+    return { pageWidth: Math.min(pageW, 480), pageHeight: maxH };
 }
 
 // ─── Individual Page Components ──────────────────────────────
@@ -163,7 +175,7 @@ function CoverPage({ data }: { data: typeof PAGES[0] }) {
             <div className="cover-ornament bottom-right" />
             <div className="cover-pattern" />
             <div className="cover-content">
-                <div className="cover-year-badge">{c.year}</div>
+                {c.year && <div className="cover-year-badge">{c.year}</div>}
                 <h1 className="cover-title">{c.title}</h1>
                 <div className="cover-divider" />
                 <p className="cover-subtitle">{c.subtitle}</p>
@@ -182,18 +194,36 @@ function StoryPage({ data }: { data: typeof PAGES[1] }) {
         <div className="page-inner story-page" style={{ background: data.bg }}>
             <div className="paper-texture" />
             <div className="page-fold-shadow" />
+            <div className="book-spine-shadow" />
             <div className="story-content">
                 <span className="story-chapter">{c.chapter}</span>
                 <h2 className="story-title">{c.title}</h2>
                 <div className="story-divider" />
                 {data.image && (
                     <div className="story-image-wrapper">
-                        <img src={data.image} alt={c.title} className="story-image" loading="lazy" />
+                        <img 
+                            src={data.image} 
+                            alt={c.title} 
+                            className="story-image" 
+                            loading="lazy" 
+                            onError={handleImageError}
+                        />
+                        <div className="photo-corner-tape top-left" />
+                        <div className="photo-corner-tape top-right" />
+                        <div className="photo-corner-tape bottom-left" />
+                        <div className="photo-corner-tape bottom-right" />
                     </div>
                 )}
                 <p className="story-text">{c.text}</p>
                 <blockquote className="story-quote">{c.quote}</blockquote>
             </div>
+            {/* Cute stickers scattered around */}
+            <div className="cute-sticker" style={{ top: '8%', right: '8%', animationDelay: '0s' }}>🌸</div>
+            <div className="cute-sticker" style={{ top: '15%', left: '5%', animationDelay: '1.5s' }}>✨</div>
+            <div className="cute-sticker" style={{ bottom: '25%', right: '12%', animationDelay: '0.8s' }}>💕</div>
+            <div className="cute-sticker" style={{ bottom: '10%', left: '8%', animationDelay: '2s' }}>🦋</div>
+            <div className="cute-sticker" style={{ top: '40%', right: '5%', animationDelay: '1.2s' }}>🌟</div>
+            <div className="decorative-washi-tape" style={{ top: '5%', left: '50%', transform: 'translateX(-50%) rotate(-2deg)' }} />
             <div className="page-number-area">
                 <div className="page-number-line" />
             </div>
@@ -207,9 +237,31 @@ function PhotoPage({ data }: { data: typeof PAGES[2] }) {
         <div className="page-inner photo-page" style={{ background: data.bg }}>
             <div className="paper-texture" />
             <div className="page-fold-shadow" />
+            <div className="book-spine-shadow" />
             <div className="photo-content">
+                {/* Washi tape at top */}
+                <div className="decorative-washi-tape top-0" style={{ left: '50%', transform: 'translateX(-50%) rotate(-1deg)' }} />
+                
+                {/* More cute stickers */}
+                <div className="cute-sticker" style={{ top: '5%', left: '10%', animationDelay: '0.5s', fontSize: '1.5rem' }}>🎀</div>
+                <div className="cute-sticker" style={{ top: '8%', right: '12%', animationDelay: '1.8s', fontSize: '1.3rem' }}>🌼</div>
+                <div className="cute-sticker" style={{ bottom: '20%', right: '8%', animationDelay: '1s', fontSize: '1.6rem' }}>💖</div>
+                <div className="cute-sticker" style={{ bottom: '8%', left: '15%', animationDelay: '2.2s', fontSize: '1.4rem' }}>🍓</div>
+                <div className="cute-sticker" style={{ top: '50%', left: '5%', animationDelay: '1.3s', fontSize: '1.2rem' }}>⭐</div>
+                <div className="cute-sticker" style={{ top: '45%', right: '8%', animationDelay: '0.7s', fontSize: '1.5rem' }}>🎵</div>
+
                 <div className="photo-frame">
-                    <img src={data.image} alt={c.caption} className="photo-image" loading="lazy" />
+                    <img 
+                        src={data.image} 
+                        alt={c.caption} 
+                        className="photo-image" 
+                        loading="lazy" 
+                        onError={handleImageError}
+                    />
+                    <div className="photo-corner-tape top-left" />
+                    <div className="photo-corner-tape top-right" />
+                    <div className="photo-corner-tape bottom-left" />
+                    <div className="photo-corner-tape bottom-right" />
                 </div>
                 <div className="photo-caption-area">
                     <span className="photo-caption">{c.caption}</span>
@@ -228,10 +280,30 @@ function TributePage({ data }: { data: typeof PAGES[11] }) {
     return (
         <div className="page-inner tribute-page" style={{ background: data.bg }}>
             <div className="paper-texture" />
+            <div className="book-spine-shadow" />
             <div className="tribute-content">
+                {/* Washi tape */}
+                <div className="decorative-washi-tape" style={{ top: '2%', left: '50%', transform: 'translateX(-50%) rotate(1deg)' }} />
+                
+                {/* Cute stickers */}
+                <div className="cute-sticker" style={{ top: '8%', right: '10%', animationDelay: '0.5s', fontSize: '1.8rem' }}>🌷</div>
+                <div className="cute-sticker" style={{ top: '12%', left: '8%', animationDelay: '1.2s', fontSize: '1.5rem' }}>💐</div>
+                <div className="cute-sticker" style={{ bottom: '15%', right: '12%', animationDelay: '0.8s', fontSize: '1.6rem' }}>🎁</div>
+                <div className="cute-sticker" style={{ bottom: '8%', left: '10%', animationDelay: '1.8s', fontSize: '1.4rem' }}>🕯️</div>
+
                 {data.image && (
                     <div className="tribute-image-wrapper">
-                        <img src={data.image} alt="Tribute" className="tribute-image" loading="lazy" />
+                        <img 
+                            src={data.image} 
+                            alt="Tribute" 
+                            className="tribute-image" 
+                            loading="lazy" 
+                            onError={handleImageError}
+                        />
+                        <div className="photo-corner-tape top-left" />
+                        <div className="photo-corner-tape top-right" />
+                        <div className="photo-corner-tape bottom-left" />
+                        <div className="photo-corner-tape bottom-right" />
                     </div>
                 )}
                 <h2 className="tribute-title">{c.title}</h2>
@@ -257,7 +329,7 @@ function BackCoverPage({ data }: { data: typeof PAGES[12] }) {
                 <p className="backcover-text">{c.text}</p>
                 <div className="cover-divider" />
                 <p className="backcover-title">{c.title}</p>
-                <p className="backcover-year">{c.year}</p>
+                {c.year && <p className="backcover-year">{c.year}</p>}
             </div>
         </div>
     );
@@ -303,11 +375,26 @@ export function FlipbookSection() {
         return () => window.removeEventListener('resize', update);
     }, []);
 
-    // Initialize PageFlip — delay to ensure DOM is painted
+    // Update flipbook dimensions on resize
+    useEffect(() => {
+        if (pageFlipRef.current && dims) {
+            const { pageWidth, pageHeight } = dims;
+            try {
+                pageFlipRef.current.updateFromHtml(
+                    bookRef.current?.querySelectorAll('.flipbook-page') as NodeListOf<HTMLElement>
+                );
+            } catch {
+                // Ignore resize errors during transition
+            }
+        }
+    }, [dims]);
+
+    // Initialize PageFlip — optimized for instant load
     useEffect(() => {
         // Clear any pending init
         if (initTimeoutRef.current) {
             clearTimeout(initTimeoutRef.current);
+            initTimeoutRef.current = null;
         }
 
         // Destroy previous instance
@@ -317,7 +404,7 @@ export function FlipbookSection() {
             setIsReady(false);
         }
 
-        // Wait for DOM to be fully painted before initializing
+        // Use requestAnimationFrame for instant DOM-ready initialization
         initTimeoutRef.current = setTimeout(() => {
             if (!bookRef.current) return;
 
@@ -333,7 +420,7 @@ export function FlipbookSection() {
                     mobileScrollSupport: false,
                     startPage: 0,
                     drawShadow: true,
-                    flippingTime: 900,
+                    flippingTime: 700,
                     usePortrait: isMobile,
                     startZIndex: 0,
                     autoSize: false,
@@ -357,18 +444,20 @@ export function FlipbookSection() {
             } catch (err) {
                 console.error('PageFlip init error:', err);
             }
-        }, 300);
+        }, 0);
 
         return () => {
             if (initTimeoutRef.current) {
                 clearTimeout(initTimeoutRef.current);
+                initTimeoutRef.current = null;
             }
             if (pageFlipRef.current) {
                 try { pageFlipRef.current.destroy(); } catch { }
                 pageFlipRef.current = null;
             }
         };
-    }, [isMobile, dims]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Only init once on mount
 
     const flipNext = useCallback(() => {
         pageFlipRef.current?.flipNext();
@@ -400,10 +489,28 @@ export function FlipbookSection() {
     const bookContainerHeight = dims.pageHeight;
 
     return (
-        <section className="snap-section flipbook-section" id="flipbook-section">
+        <section className="snap-section flipbook-section relative overflow-hidden" id="flipbook-section">
             {/* Background */}
             <div className="flipbook-bg" />
             <div className="flipbook-ambient-light" />
+
+            {/* Top moving photo track */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none py-2 z-[2]" style={{ maskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)' }}>
+                <div className="flex gap-4 w-max animate-[marquee-left_45s_linear_infinite] will-change-transform">
+                    {[...ROW_1_PHOTOS, ...ROW_1_PHOTOS, ...ROW_1_PHOTOS].map((src, i) => (
+                        <img key={`top-${i}`} src={src} className="h-[120px] md:h-[180px] w-auto object-cover grayscale brightness-75 rounded-sm" alt="" loading="lazy" />
+                    ))}
+                </div>
+            </div>
+
+            {/* Bottom moving photo track */}
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none py-2 z-[2]" style={{ maskImage: 'linear-gradient(to top, black 30%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)' }}>
+                <div className="flex gap-4 w-max animate-[marquee-right_50s_linear_infinite] will-change-transform">
+                    {[...ROW_2_PHOTOS, ...ROW_2_PHOTOS, ...ROW_2_PHOTOS].map((src, i) => (
+                        <img key={`bottom-${i}`} src={src} className="h-[120px] md:h-[180px] w-auto object-cover grayscale brightness-75 rounded-sm" alt="" loading="lazy" />
+                    ))}
+                </div>
+            </div>
 
             {/* Book Container */}
             <div className="flipbook-stage">
@@ -440,7 +547,7 @@ export function FlipbookSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.6 }}
+                        transition={{ duration: 0.6 }}
                         className="flipbook-controls"
                     >
                         <button
@@ -477,7 +584,7 @@ export function FlipbookSection() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ delay: 1.5, duration: 0.8 }}
+                        transition={{ delay: 0.8, duration: 0.8 }}
                         className="flipbook-hint"
                     >
                         <motion.span

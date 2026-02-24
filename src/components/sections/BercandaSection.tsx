@@ -5,7 +5,7 @@ import { StretchingCat, PawTrail } from '../ui/CatDecorations';
 
 export function BercandaSection() {
   const images = [
-    { src: '/images/bercanda/1.jpeg', caption: 'Moment 1' },
+    { src: '/images/bercanda/.jpeg', caption: 'Moment 1' },
     { src: '/images/bercanda/2.jpeg', caption: 'Moment 2' },
     { src: '/images/bercanda/3.jpeg', caption: 'Moment 3' },
     { src: '/images/bercanda/4.jpeg', caption: 'Moment 4' },
@@ -16,6 +16,8 @@ export function BercandaSection() {
     { src: '/images/bercanda/9.jpeg', caption: 'Moment 9' },
     { src: '/images/bercanda/10.jpeg', caption: 'Moment 10' },
     { src: '/images/bercanda/11.jpeg', caption: 'Moment 11' },
+    { src: '/images/bercanda/12.jpeg', caption: 'Moment 12' },
+    { src: '/images/bercanda/13.jpeg', caption: 'Moment 13' },
   ];
 
   const containerVariants = {

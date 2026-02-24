@@ -47,6 +47,8 @@
     justify-content: center;
     width: 100%;
     padding: 20px;
+    /* Ensure proper spacing on all devices */
+    box-sizing: border-box;
 }
 
 .book-surface-shadow {
@@ -66,9 +68,13 @@
 .flipbook-book {
     position: relative;
     margin: 0 auto;
+    /* Enhanced shadow for depth */
     box-shadow:
-        0 12px 50px rgba(0, 0, 0, 0.5),
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 10px 30px rgba(0, 0, 0, 0.4),
         0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Smooth transitions */
+    transition: transform 0.3s ease;
 }
 
 /* ─── Page Base ──────────────────────────────────────────── */
@@ -76,6 +82,27 @@
     background: white;
     overflow: hidden;
     box-sizing: border-box;
+    border-radius: 4px;
+    /* Realistic page edge */
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.03),
+        1px 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Right page edge shadow */
+.flipbook-page::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.04) 50%, 
+        rgba(0, 0, 0, 0.08) 100%);
+    pointer-events: none;
+    z-index: 10;
 }
 
 .page-inner {
@@ -92,10 +119,25 @@
 .paper-texture {
     position: absolute;
     inset: 0;
-    opacity: 0.03;
+    opacity: 0.04;
     pointer-events: none;
     z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Page curl effect at corner */
+.paper-texture::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(ellipse at bottom right, 
+        rgba(0, 0, 0, 0.06) 0%, 
+        transparent 70%);
+    pointer-events: none;
+    z-index: 2;
 }
 
 .page-fold-shadow {
@@ -104,9 +146,128 @@
     top: 0;
     width: 20px;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.06), transparent);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.08), transparent);
     z-index: 2;
     pointer-events: none;
+}
+
+/* Book spine shadow for realistic effect */
+.book-spine-shadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 35px;
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.12) 0%, 
+        rgba(0, 0, 0, 0.06) 40%, 
+        transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+/* ─── Decorative Elements ────────────────────────────────── */
+.decorative-stamp {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    opacity: 0.15;
+    font-size: 3rem;
+    color: rgba(139, 21, 56, 0.5);
+    transform: rotate(-15deg);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Washi tape - decorative Japanese tape */
+.decorative-washi-tape {
+    position: absolute;
+    width: 80px;
+    height: 22px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 180, 150, 0.4) 0px,
+        rgba(255, 180, 150, 0.4) 4px,
+        rgba(255, 200, 170, 0.5) 4px,
+        rgba(255, 200, 170, 0.5) 8px
+    );
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1px);
+    z-index: 20;
+    border-radius: 2px;
+}
+
+/* Photo corner tapes - holds photos in place */
+.photo-corner-tape {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(200, 220, 255, 0.5) 100%
+    );
+    box-shadow: 
+        1px 1px 3px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    z-index: 15;
+    border-radius: 2px;
+}
+
+.photo-corner-tape.top-left {
+    top: 6px;
+    left: 6px;
+    transform: rotate(-135deg);
+}
+
+.photo-corner-tape.top-right {
+    top: 6px;
+    right: 6px;
+    transform: rotate(-45deg);
+}
+
+.photo-corner-tape.bottom-left {
+    bottom: 6px;
+    left: 6px;
+    transform: rotate(135deg);
+}
+
+.photo-corner-tape.bottom-right {
+    bottom: 6px;
+    right: 6px;
+    transform: rotate(45deg);
+}
+
+.cute-sticker {
+    position: absolute;
+    font-size: 1.8rem;
+    pointer-events: none;
+    z-index: 25;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+    animation: float-sticker 5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.cute-sticker:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+@keyframes float-sticker {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) rotate(3deg) scale(1.05);
+    }
+    50% {
+        transform: translateY(-4px) rotate(-2deg) scale(0.98);
+    }
+    75% {
+        transform: translateY(-10px) rotate(5deg) scale(1.02);
+    }
 }
 
 /* ─── Page Number Area ───────────────────────────────────── */
@@ -132,52 +293,73 @@
     justify-content: center;
     color: white;
     text-align: center;
+    /* Realistic book cover texture */
+    background-image: 
+        linear-gradient(135deg, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
 }
 
 .cover-pattern {
     position: absolute;
     inset: 0;
-    opacity: 0.06;
+    opacity: 0.05;
     pointer-events: none;
     background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.08) 20px, rgba(255, 255, 255, 0.08) 21px),
-        repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.08) 20px, rgba(255, 255, 255, 0.08) 21px);
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.06) 20px, rgba(255, 255, 255, 0.06) 21px),
+        repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.06) 20px, rgba(255, 255, 255, 0.06) 21px);
 }
 
+/* Cover ornaments - elegant corners */
 .cover-ornament {
     position: absolute;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     z-index: 5;
     pointer-events: none;
 }
 
 .cover-ornament.top-left {
-    top: 14px;
-    left: 14px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.25);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.25);
+    top: 18px;
+    left: 18px;
+    border-top: 2px solid rgba(255, 215, 0, 0.4);
+    border-left: 2px solid rgba(255, 215, 0, 0.4);
+    border-top-left-radius: 8px;
+    box-shadow: 
+        inset 2px 2px 4px rgba(255, 215, 0, 0.2),
+        1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cover-ornament.top-right {
-    top: 14px;
-    right: 14px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.25);
-    border-right: 1.5px solid rgba(255, 255, 255, 0.25);
+    top: 18px;
+    right: 18px;
+    border-top: 2px solid rgba(255, 215, 0, 0.4);
+    border-right: 2px solid rgba(255, 215, 0, 0.4);
+    border-top-right-radius: 8px;
+    box-shadow: 
+        inset -2px 2px 4px rgba(255, 215, 0, 0.2),
+        1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cover-ornament.bottom-left {
-    bottom: 14px;
-    left: 14px;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.25);
+    bottom: 18px;
+    left: 18px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.4);
+    border-left: 2px solid rgba(255, 215, 0, 0.4);
+    border-bottom-left-radius: 8px;
+    box-shadow: 
+        inset 2px -2px 4px rgba(255, 215, 0, 0.2),
+        1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cover-ornament.bottom-right {
-    bottom: 14px;
-    right: 14px;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
-    border-right: 1.5px solid rgba(255, 255, 255, 0.25);
+    bottom: 18px;
+    right: 18px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.4);
+    border-right: 2px solid rgba(255, 215, 0, 0.4);
+    border-bottom-right-radius: 8px;
+    box-shadow: 
+        inset -2px -2px 4px rgba(255, 215, 0, 0.2),
+        1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cover-content {
@@ -298,10 +480,19 @@
     padding-bottom: 52%;
     position: relative;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 12px;
     margin-bottom: 10px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
+    /* Loading placeholder */
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 50%, #f0f0f0 100%);
+    background-size: 200% 200%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 50%; }
+    100% { background-position: -200% 50%; }
 }
 
 .story-image {
@@ -311,6 +502,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
 }
 
 .story-text {
@@ -358,22 +550,34 @@
 .photo-frame {
     position: relative;
     background: white;
-    padding: 8px;
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.08),
-        0 1px 3px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 10px 10px 14px 10px;
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.12), 
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        inset 0 0 30px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
     width: 100%;
     flex: 1;
     min-height: 0;
     overflow: hidden;
+    /* Slight rotation for realistic look */
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s ease;
+}
+
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.01);
 }
 
 .photo-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 2px;
     display: block;
+    /* Slight vintage filter */
+    filter: sepia(0.05) contrast(1.02) saturate(0.98);
 }
 
 .photo-caption-area {
@@ -430,6 +634,10 @@
     margin-bottom: 14px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     flex-shrink: 0;
+    /* Loading placeholder */
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 50%, #f0f0f0 100%);
+    background-size: 200% 200%;
+    animation: shimmer 1.5s infinite;
 }
 
 .tribute-image {
@@ -526,7 +734,7 @@
    ════════════════════════════════════════════════════════════ */
 .flipbook-controls {
     position: absolute;
-    bottom: clamp(14px, 3vh, 32px);
+    bottom: clamp(40px, 12vh, 80px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 30;
@@ -652,13 +860,27 @@
    RESPONSIVE
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
+    .flipbook-section {
+        /* Better mobile height */
+        height: 100dvh;
+        padding: 10px 0;
+    }
+    
     .flipbook-stage {
-        padding: 10px;
+        padding: 8px;
+    }
+
+    .flipbook-book {
+        /* Adjust shadow for mobile */
+        box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.5),
+            0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
     .flipbook-controls {
         padding: 5px 10px;
         gap: 8px;
+        bottom: clamp(30px, 8vh, 60px);
     }
 
     .flip-nav-btn {
@@ -717,6 +939,29 @@
     }
 }
 
+/* Extra small devices */
+@media (max-width: 380px) {
+    .flipbook-book {
+        max-width: 95vw;
+    }
+    
+    .cover-title {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+    
+    .flipbook-controls {
+        transform: translateX(-50%) scale(0.9);
+    }
+}
+
+/* Tablet portrait */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .flipbook-stage {
+        padding: 15px;
+    }
+}
+
+/* Small height devices */
 @media (max-height: 500px) {
     .flipbook-controls {
         bottom: 6px;
@@ -725,5 +970,9 @@
 
     .flipbook-hint {
         display: none;
+    }
+    
+    .flipbook-section {
+        height: 100dvh;
     }
 }

@@ -12,6 +12,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { RouteErrorBoundary } from '@/components/RouteErrorBoundary';
 import '@/index.css'
 import { HomePage } from '@/pages/HomePage'
+import { MuseumPage } from '@/pages/MuseumPage'
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
     errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/museum",
+    element: <MuseumPage />,
   },
 ]);
 
@@ -32,4 +37,3 @@ createRoot(document.getElementById('root')!).render(
     </QueryClientProvider>
   </StrictMode>,
 )
-   

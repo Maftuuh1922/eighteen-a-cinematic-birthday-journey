@@ -1,45 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SleepingCat } from '../ui/CatDecorations';
 
-// Letter-by-letter animation component
-function AnimatedLetters({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
-  return (
-    <span className={className}>
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 80, rotateX: -90 }}
-          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: delay + i * 0.06,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="inline-block"
-          style={{ transformOrigin: 'bottom' }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </motion.span>
-      ))}
-    </span>
-  );
-}
-
-// Floating particle component
-function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
+// Particle component for gold dust
+function GoldDust({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
     <motion.div
-      className="absolute rounded-full bg-white/20 pointer-events-none transform-gpu will-change-transform"
-      style={{ left: x, top: y, width: size, height: size }}
+      className="absolute rounded-full bg-antique_gold pointer-events-none transform-gpu will-change-transform"
+      style={{ left: x, top: y, width: size, height: size, filter: 'blur(1px)' }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{
-        opacity: [0, 0.6, 0],
+        opacity: [0, 0.35, 0],
         scale: [0, 1, 0.5],
-        y: [0, -80, -160],
+        y: [0, -60, -120],
       }}
       transition={{
-        duration: 4 + Math.random() * 3,
+        duration: 5 + Math.random() * 4,
         delay,
         repeat: Infinity,
         ease: 'easeInOut',
@@ -48,223 +23,200 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
   );
 }
 
+// Letter-by-letter animation component for title
+function AnimatedTitle() {
+  const text = "HBD NAYLA";
+  return (
+    <span className="inline-block relative z-20 whitespace-nowrap">
+      {text.split('').map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{
+            duration: 1.4,
+            delay: 1.0 + i * 0.08,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block font-normal font-['Bodoni_Moda',_'Playfair_Display'] text-cream_white italic uppercase"
+          style={{ letterSpacing: '0.15em', fontSize: 'clamp(2.2rem, 5.5vw, 6.5rem)', lineHeight: '0.9' }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
 export function HeroSection() {
-  const [showLabel, setShowLabel] = useState(false);
-  const [showSignature, setShowSignature] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setShowLabel(true), 1800);
-    const t2 = setTimeout(() => setShowSignature(true), 2600);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    setIsLoaded(true);
   }, []);
 
-  // Generate particles
-  const particles = React.useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+  const particles = React.useMemo(() => Array.from({ length: 18 }, (_, i) => ({
     id: i,
     x: `${5 + Math.random() * 90}%`,
-    y: `${30 + Math.random() * 60}%`,
+    y: `${20 + Math.random() * 70}%`,
     size: 2 + Math.random() * 3,
-    delay: 2 + Math.random() * 4,
+    delay: 1 + Math.random() * 5,
   })), []);
 
   return (
-    <section className="snap-section relative bg-black flex items-center justify-center overflow-hidden" style={{ perspective: '1200px' }}>
-      {/* Background with dramatic zoom-out */}
+    <section className="snap-section relative flex items-center justify-center overflow-hidden bg-background">
+
+      {/* Background Photo with cinematic treatment */}
       <motion.div
-        initial={{ scale: 1.3, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute inset-0 z-0 will-change-transform transform-gpu"
+        initial={{ scale: 1.0 }}
+        animate={{ scale: 1.06 }}
+        transition={{ duration: 8, delay: 0.3, ease: 'easeOut' }}
+        className="absolute inset-0 z-0 origin-center pointer-events-none"
       >
         <img
-          src="/images/bercanda/13.jpg"
+          src="/images/bercanda/13.jpeg" /* using available photo based on old code */
           className="w-full h-full object-cover"
-          alt="Bernadya Portrait"
+          alt="Nayla"
+          style={{
+            filter: 'sepia(25%) contrast(1.15) brightness(0.72)',
+          }}
         />
-        {/* Cinematic overlays */}
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/15 via-transparent to-blue-900/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-
-        {/* Film grain texture */}
-        <div
-          className="absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none"
-          style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }}
-        />
-
-        {/* Animated light rays */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.08, 0.18, 0.08] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-[20%] -right-[10%] w-[50%] h-[120%] bg-gradient-to-l from-amber-100/20 via-yellow-200/10 to-transparent blur-2xl"
-            style={{ transform: 'rotate(-25deg)' }}
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.05, 0.15, 0.05] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -top-[10%] right-[5%] w-[30%] h-[100%] bg-gradient-to-l from-orange-100/15 via-amber-100/5 to-transparent blur-xl"
-            style={{ transform: 'rotate(-35deg)' }}
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.03, 0.1, 0.03] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute -top-[15%] right-[15%] w-[40%] h-[110%] bg-gradient-to-l from-yellow-50/10 via-white/5 to-transparent blur-2xl"
-            style={{ transform: 'rotate(-20deg)' }}
-          />
-          {/* Horizontal light sweep */}
-          <motion.div
-            initial={{ x: '-100%', opacity: 0 }}
-            animate={{ x: '200%', opacity: [0, 0.15, 0] }}
-            transition={{ duration: 6, repeat: Infinity, repeatDelay: 8, ease: "easeInOut" }}
-            className="absolute top-[20%] w-[30%] h-[60%] bg-gradient-to-r from-transparent via-white/10 to-transparent blur-3xl"
-          />
-        </div>
+        {/* Overlay tint */}
+        <div className="absolute inset-0 z-1" style={{ backgroundColor: 'rgba(180, 120, 60, 0.12)', mixBlendMode: 'multiply' }} />
       </motion.div>
 
-      {/* Floating particles */}
+      {/* Vignette Layer */}
+      <div className="cinematic-vignette" />
+
+      {/* Film Grain Texture - Managed globally in index.css but added here for specific layered effects if needed. Assuming global noise-bg is enough, but adding an extra animated layer to match spec. */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.045 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        className="absolute inset-0 z-50 pointer-events-none"
+        style={{
+          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+          mixBlendMode: 'overlay',
+        }}
+      />
+
+      {/* Light Leak */}
+      <div className="absolute top-0 right-0 w-[60vmin] h-[60vmin] pointer-events-none z-[5]" style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)', filter: 'blur(80px)' }} />
+
+      {/* Gold Dust Particles */}
       <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
         {particles.map((p) => (
-          <FloatingParticle key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} />
+          <GoldDust key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} />
         ))}
       </div>
 
-      {/* Cinematic letterbox bars */}
+      {/* Horizontal Scan Line */}
       <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute top-0 left-0 w-full h-[clamp(30px,5vh,50px)] bg-black z-[15] origin-left"
-      />
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 w-full h-[clamp(30px,5vh,50px)] bg-black z-[15] origin-right"
+        initial={{ y: '-10vh' }}
+        animate={{ y: '110vh' }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        className="absolute left-0 w-full h-[1px] bg-antique_gold/10 z-[6] pointer-events-none"
       />
 
-      {/* ═══ CONTENT ═══ */}
-      <div className="relative z-10 w-full h-full px-8 md:px-[var(--pad-x)] flex flex-col justify-end py-[var(--pad-y)]">
+      {/* Intro Label Top Right */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 2.2 }}
+        className="absolute top-[8vh] right-[4vw] z-30 flex flex-col items-center gap-4"
+      >
+        <div className="w-[1px] h-[30px] bg-cream_white/30" />
+        <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }} className="font-sans text-[0.6rem] tracking-[0.3em] uppercase text-cream_white/60">
+          Intro
+        </span>
+      </motion.div>
 
-        {/* Main title: "BERCANDA" - letter by letter */}
-        <div className="mb-3 md:mb-5" style={{ perspective: '600px' }}>
-          <h1 className="font-display font-[300] text-[clamp(40px,9vw,80px)] text-white leading-[1] tracking-[0.2em] uppercase">
-            <AnimatedLetters text="BERCANDA" delay={0.5} />
-          </h1>
+      {/* Vertical divider right */}
+      <div className="absolute right-[4vw] top-[40vh] w-[1px] h-[30vh] bg-cream_white/30 z-[5]" />
+
+      {/* Cinematic Letterbox Bars */}
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 0.8, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        className="letterbox-top origin-top"
+      />
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 0.8, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        className="letterbox-bottom origin-bottom"
+      />
+
+      {/* Main Content Container */}
+      <div className="relative z-20 w-full h-full flex flex-col px-8 md:px-[6vw] justify-end pb-[15vh]">
+
+        <div className="flex flex-col md:flex-row justify-between items-end w-full gap-8">
+
+          {/* Bottom Left Title Block */}
+          <div className="flex flex-col relative w-full md:w-auto z-30">
+            <AnimatedTitle />
+
+            <div className="flex flex-col justify-start gap-4 mt-8 ml-2">
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "60px" }}
+                transition={{ duration: 1.5, delay: 1.8, ease: "easeInOut" }}
+                className="h-[1px] bg-antique_gold/60"
+              />
+              <div className="flex flex-col gap-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 2.2, ease: 'easeOut' }}
+                  className="font-sans text-[0.55rem] tracking-[0.6em] text-cream_white/60 uppercase"
+                >
+                  A Cinematic Tribute
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 2.5, ease: 'easeOut' }}
+                  className="font-subtitle text-[0.75rem] tracking-[0.8em] text-antique_gold/90 uppercase italic"
+                >
+                  Starring Nayla
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Right Signature */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1.8, ease: 'easeOut' }}
+            className="md:mb-8 mt-8 md:mt-0"
+          >
+            <p className="font-script text-antique_gold leading-none hover:text-antique_gold/90 transition-all duration-700 cursor-default" style={{ fontSize: 'clamp(3rem, 6vw, 6rem)', textShadow: '0 0 40px rgba(201,168,76,0.4)' }}>
+              Kenza Zahra
+            </p>
+          </motion.div>
+
         </div>
-
-        {/* "Bernadya" artist label */}
-        <AnimatePresence>
-          {showLabel && (
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-3 mb-[clamp(40px,8vh,80px)]"
-            >
-              <motion.div
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="w-[3px] h-[24px] bg-burgundy origin-top"
-              />
-              <p className="font-lato font-bold text-[clamp(11px,1.4vw,16px)] text-white/85 tracking-[0.4em] uppercase">
-                Bernadya
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Signature script name - right side */}
-        <AnimatePresence>
-          {showSignature && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-              animate={{ opacity: 1, scale: 1, rotate: -3 }}
-              transition={{
-                type: "spring",
-                stiffness: 60,
-                damping: 15,
-                duration: 1.5
-              }}
-              className="absolute bottom-[22%] right-[5%] md:bottom-[18%] md:right-[8%] transform-gpu"
-            >
-              <motion.span
-                className="font-script text-[clamp(55px,10vw,115px)] text-white/90 italic leading-none block"
-                style={{ textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 0px 60px rgba(139,21,56,0.2)' }}
-                animate={{
-                  textShadow: [
-                    '0 4px 30px rgba(0,0,0,0.5), 0 0px 60px rgba(139,21,56,0.2)',
-                    '0 4px 30px rgba(0,0,0,0.5), 0 0px 80px rgba(139,21,56,0.35)',
-                    '0 4px 30px rgba(0,0,0,0.5), 0 0px 60px rgba(139,21,56,0.2)',
-                  ]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                Baringung
-              </motion.span>
-              {/* Decorative underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-[1px] w-[80%] mx-auto bg-gradient-to-r from-transparent via-white/30 to-transparent origin-center mt-2"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-
       </div>
 
-      {/* Scroll indicator - animated pulse */}
+      {/* Scroll indicator bottom center */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ delay: 4, duration: 1.2 }}
-        className="absolute bottom-[clamp(36px,6vh,56px)] left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-none"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: [0, 1, 0.5, 1], y: 0 }}
+        transition={{ duration: 1, delay: 2.8, ease: 'easeOut' }}
+        className="absolute bottom-[6vh] md:bottom-[8vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-30 pointer-events-none group"
       >
+        <span className="font-sans text-[0.55rem] tracking-[0.3em] uppercase text-cream_white/60">
+          SCROLL TO BEGIN
+        </span>
         <motion.div
-          animate={{ scaleY: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"
+          animate={{ scaleY: [0, 1, 0], opacity: [0, 1, 0], transformOrigin: ['top', 'top', 'bottom'] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-[1px] h-[40px] bg-cream_white/50 group-hover:opacity-100 transition-opacity"
         />
-        <motion.span
-          animate={{ opacity: [0.4, 0.8, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="text-[9px] tracking-[0.3em] uppercase text-white font-sans"
-        >
-          Scroll to begin
-        </motion.span>
       </motion.div>
 
-      {/* Corner ornaments */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ delay: 3, duration: 1.5 }}
-        className="absolute top-[clamp(36px,6vh,56px)] right-[5%] md:right-[8%] z-[12]"
-      >
-        <div className="w-[40px] h-[40px] border-t border-r border-white/30" />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ delay: 3.2, duration: 1.5 }}
-        className="absolute bottom-[clamp(36px,6vh,56px)] left-[5%] md:left-[8%] z-[12]"
-      >
-        <div className="w-[40px] h-[40px] border-b border-l border-white/30" />
-      </motion.div>
-      <SleepingCat
-        className="absolute bottom-[clamp(40px,7vh,65px)] right-[5%] md:right-[8%] z-[12]"
-        color="white"
-        opacity={0.12}
-        size={50}
-        delay={3.5}
-      />
     </section>
   );
 }

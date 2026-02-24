@@ -35,6 +35,8 @@ function reportRouteError(error: RouteError) {
     }
   }
 
+  console.error('REAL ERROR MESSAGE:', errorMessage, '\nSTACK:', errorStack);
+
   errorReporter.report({
     message: errorMessage,
     stack: errorStack,
